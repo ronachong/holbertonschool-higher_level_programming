@@ -16,5 +16,5 @@ File.write(filepath, jsonstring)
 
 jsonstring_to_hash = JSON.parse(jsonstring)
 projects_array = jsonstring_to_hash["items"]
-first_project = projects_array[0]
-puts first_project["full_name"]
+
+puts projects_array.map { |project| project["full_name"]+"\n" }.join
