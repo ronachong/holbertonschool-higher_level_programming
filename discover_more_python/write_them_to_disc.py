@@ -15,4 +15,4 @@ req = urllib2.Request(url, None, request_headers)
 response = urllib2.urlopen(req)
 
 # write response to /tmp/20
-file.write(response)
+file.write(response.read())
