@@ -11,3 +11,4 @@ req = urllib2.Request(url, None, request_headers)
 response = urllib2.urlopen(req)
 
 print response.read()
+response.close()

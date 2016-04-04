@@ -16,3 +16,5 @@ response = urllib2.urlopen(req)
 
 # write response to /tmp/20
 file.write(response.read())
+
+response.close()

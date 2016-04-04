@@ -20,3 +20,5 @@ items = json_as_dict['items'] # Chunks still missing.
 idk = items[0] # Looks really weird.
 
 print(idk)
+
+response.close()
