@@ -19,6 +19,6 @@ json_as_dict = json.loads(jsonstring) # I believe this should be ALL of the data
 items = json_as_dict['items'] # Chunks still missing.
 idk = items[0] # Looks really weird.
 
-print(idk)
+print(jsonstring)
 
 response.close()
