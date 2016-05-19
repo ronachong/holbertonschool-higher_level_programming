@@ -80,3 +80,57 @@ class Person:
             return years
         
         
+class Baby(Person):
+    def can_run(self):
+        return False
+
+    def need_help(self):
+        return True
+
+    def is_young(self):
+        return True
+
+    def can_vote(self):
+        return False
+
+    
+class Teenager(Person):
+    def can_run(self):
+        return True
+
+    def need_help(self):
+        return False
+
+    def is_young(self):
+        return True
+
+    def can_vote(self):
+        return False
+
+
+class Adult(Person):
+    def can_run(self):
+        return True
+
+    def need_help(self):
+        return False
+
+    def is_young(self):
+        return False
+
+    def can_vote(self):
+        return True
+
+
+class Senior(Person):
+    def can_run(self):
+        return False
+
+    def need_help(self):
+        return True
+
+    def is_young(self):
+        return False
+
+    def can_vote(self):
+        return True
