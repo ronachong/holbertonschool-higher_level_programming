@@ -1,3 +1,17 @@
+import json
+import os
+
+def save_to_file(list, filename):
+ with open(filename, 'w') as outfile:
+     json.dump(list, outfile)
+
+def load_from_file(filename):
+    if type(filename) != str or os.path.isfile(filename) != True:
+        raise Exception("filename is not valid or doesn't exist")
+    with open(filename) as data_file:
+        list = json.load(data_file)
+    return list
+
 class Person:
 
     # define class attributes
@@ -78,7 +92,21 @@ class Person:
                 return years - 1
         else:
             return years
-        
+
+    # json methods
+    def json(self):
+        return {'id': self.__id, 'eyes_color': self.__eyes_color, 'genre': self.__genre, 'date_of_birth': self.__date_of_birth, 'first_name': self.__first_name, 'last_name': self.last_name}
+
+    def load_from_json(self, json):
+        if type(json) != hash:
+            raise Exception("json is not valid")
+        self.__id = json['id']
+        self.__eyes_color = json['eyes_color']
+        self.__genre = json['genre']
+        self.__date_of_birth = json['date_of_birth']
+        self.__first_name = json['first_name']
+        self.__last_name = json['last_name']
+    
         
 class Baby(Person):
     def can_run(self):
