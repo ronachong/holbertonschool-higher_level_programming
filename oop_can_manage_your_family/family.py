@@ -43,3 +43,40 @@ class Person:
         return self.__genre
     def get_eyes_color(self):
         return self.__eyes_color
+
+    # define other instance functions
+    def __str__(self):
+        return self.__first_name + " " + self.last_name
+
+    def __gt__(self, other):
+        return Person.age(self) > Person.age(other)
+
+    def __lt__(self, other):
+        return Person.age(self) < Person.age(other)
+
+    def __ge__(self, other):
+        return Person.age(self) >= Person.age(other)
+
+    def __le__(self, other):
+        return Person.age(self) <= Person.age(other)
+
+    def __eq__(self, other):
+        return Person.age(self) == Person.age(other)
+
+    def __ne__(self, other):
+        return Person.age(self) != Person.age(other)
+    
+    def is_male(self):
+        if self.__genre == "Male":
+            return True
+
+    def age(self):
+        years = 2016 - self.__date_of_birth[2]
+        if self.__date_of_birth[0] > 5:
+            return years - 1
+        if self.__date_of_birth[0] == 5 and self.__date_of_birth[1] <= 20:
+                return years - 1
+        else:
+            return years
+        
+        
