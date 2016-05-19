@@ -14,12 +14,18 @@ print json_list
 
 save_to_file(json_list, "my_family.json")
 
-#my_family = load_from_file("my_family.json")
-#print "I have %d members in my family" % len(my_family)
+my_family = load_from_file("my_family.json")
+print "I have %d members in my family" % len(my_family)
+
+e = Adult(0, "foo", [1, 1, 1], "Female", "Blue")
+print my_family[1]
+e.load_from_json(my_family[1])
+#name = Person.get_id(e)
+#print name
 
 # new baby!
-#b = Baby(3, "Tony", [7, 4, 2015], "Male", "Green")
-#b.last_name = "Foto"
-#my_family.append(b)
+b = Baby(3, "Tony", [7, 4, 2015], "Male", "Green")
+b.last_name = "Foto"
+my_family.append(Person.json(b))
 
-#save_to_file(my_family)
+save_to_file(my_family, "my_family.json")
