@@ -2,14 +2,26 @@ import json
 import os
 
 def save_to_file(list, filename):
+ json_data = []
+
+ # loop through list of Person instances;
+ # create a hash of attr.'s from each instance;
+ # add a kind key-value pair to each hash;
+ # and append each hash to json_data
+ for x in list:
+  hash = json(x)
+  default_data['kind'] = x.__class__.__name__
+  json_data.append(hash)
+  
+ # save json_data to file 
  with open(filename, 'w') as outfile:
-     json.dump(list, outfile)
+     json.dump(json_data, outfile)
 
 def load_from_file(filename):
     if type(filename) != str or os.path.isfile(filename) != True:
         raise Exception("filename is not valid or doesn't exist")
     with open(filename) as data_file:
-        list = json.load(data_file)
+        json_data = json.load(data_file)
     return list
 
 class Person:
