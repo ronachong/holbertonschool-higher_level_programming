@@ -20,8 +20,8 @@ print "I have %d members in my family" % len(my_family)
 e = Adult(0, "foo", [1, 1, 1], "Female", "Blue")
 print my_family[1]
 e.load_from_json(my_family[1])
-#name = Person.get_id(e)
-#print name
+name = Person.get_first_name(e)
+print name
 
 # new baby!
 b = Baby(3, "Tony", [7, 4, 2015], "Male", "Green")

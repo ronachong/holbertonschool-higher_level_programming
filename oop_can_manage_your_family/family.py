@@ -98,7 +98,7 @@ class Person:
         return {'id': self.__id, 'eyes_color': self.__eyes_color, 'genre': self.__genre, 'date_of_birth': self.__date_of_birth, 'first_name': self.__first_name, 'last_name': self.last_name}
 
     def load_from_json(self, json):
-        if type(json) != hash:
+        if type(json) != dict:
             raise Exception("json is not valid")
         self.__id = json['id']
         self.__eyes_color = json['eyes_color']
