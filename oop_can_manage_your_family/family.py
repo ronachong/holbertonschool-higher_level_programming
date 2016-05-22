@@ -54,6 +54,7 @@ class Person:
         self.__genre = genre
         self.__eyes_color = eyes_color
         self.is_married_to = 0
+        self.children = []
 
         # set cases to raise exceptions
         if id < 0 or type(id) != int:
@@ -151,7 +152,9 @@ class Person:
                 'date_of_birth': self.__date_of_birth,
                 'first_name': self.__first_name,
                 'last_name': self.last_name,
-                'is_married_to': self.is_married_to}
+                'is_married_to': self.is_married_to
+                'children': self.children
+                }
 
     def load_from_json(self, json):
         if type(json) != dict:
