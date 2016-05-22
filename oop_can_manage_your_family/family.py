@@ -36,7 +36,6 @@ def load_from_file(filename):
             # initialize Senior object
             person = Senior(1, "foo", [1,01,0000], "Female", "Blue")
         # set attributes for object from hash
-        print person
         person.load_from_json(x)
         list.append(person)
     return list
@@ -120,6 +119,28 @@ class Person:
                 return years - 1
         else:
             return years
+
+    def is_married(self):
+        if self.is_married_to != 0:
+            return True
+        else:
+            return False
+
+    def divorce(self, p):
+        self.is_married_to = 0
+        p.is_married_to = 0
+
+    def just_married_with(self, p):
+        if self.is_married() == True or p.is_married() == True:
+            raise Exception("Already married")
+        if self.can_be_married() == False or p.can_be_married() == False:
+            raise Exception("Can't be married")
+        self.is_married_to = p.__id
+        p.is_married_to = self.__id
+        if self.__genre == "Female" and p.__genre == "Male":
+            self.last_name = p.last_name
+        elif self.genre == "Male" and p.__genre == "Female":
+            p.last_name = self.last_name
 
     # json methods
     def json(self):
