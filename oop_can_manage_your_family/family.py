@@ -1,6 +1,5 @@
 import json
 import os
-import itertools
 
 # global functions
 def save_to_file(list, filename):
@@ -143,6 +142,33 @@ class Person:
         elif self.genre == "Male" and p.__genre == "Female":
             p.last_name = self.last_name
 
+    def has_child_with(self, p, id, first_name, date_of_birth, genre, eyes_color):
+        if p is None or (p.__class__.__name__ != 'Adult' and p.__class__.__name__ != 'Senior'):
+            raise Exception("p is not an Adult or Senior")
+        if self.can_have_child == False or p.can_have_child == False: # check for p seems redundant
+            raise Exception("Can't have baby")
+        if id < 0 or type(id) != int:
+            raise Exception("id is not an integer")
+        if first_name == "" or type(first_name) != str:
+            raise Exception("string is not a string")
+        if type(date_of_birth) != list:
+            raise Exception("date_of_birth is not a valid date")
+        for x in date_of_birth:
+            if type(x) != int:
+                raise Exception("date_of_birth is not a valid date")
+        if type(genre) != str or genre not in Person.GENRES:
+            raise Exception("genre is not valid")
+        if type(eyes_color) != str or eyes_color not in Person.EYES_COLORS:
+            raise Exception("eyes_color is not valid")
+        self.children.append(id)
+        p.children.append(id)
+        return Baby(id, first_name, date_of_birth, genre, eyes_color)
+
+    def adopt_child(self, c):
+        if self.can_have_child == False:
+            raise Exception("Can't adopt child")
+        self.children.append(c.get_id())
+
     # json methods
     def json(self):
         return {'kind': self.__class__.__name__,
@@ -152,7 +178,7 @@ class Person:
                 'date_of_birth': self.__date_of_birth,
                 'first_name': self.__first_name,
                 'last_name': self.last_name,
-                'is_married_to': self.is_married_to
+                'is_married_to': self.is_married_to,
                 'children': self.children
                 }
 
@@ -183,6 +209,9 @@ class Baby(Person):
     def can_be_married(self):
         return False
 
+    def can_have_child(self):
+        return False
+
 
 class Teenager(Person):
     def can_run(self):
@@ -198,6 +227,9 @@ class Teenager(Person):
         return False
 
     def can_be_married(self):
+        return False
+
+    def can_have_child(self):
         return False
 
 
@@ -217,6 +249,9 @@ class Adult(Person):
     def can_be_married(self):
         return True
 
+    def can_have_child(self):
+        return True
+
 
 class Senior(Person):
     def can_run(self):
@@ -233,3 +268,6 @@ class Senior(Person):
 
     def can_be_married(self):
         return True
+
+    def can_have_child(self):
+        return False

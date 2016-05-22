@@ -13,4 +13,4 @@ monica = vanessa.has_child_with(marc, 5, "Monica", [5, 6, 2016], "Female", "Blue
 
 print "Vanessa has %d children" % (len(vanessa.children))
 
-save_to_file(my_family)
+save_to_file(my_family, "my_family.json")
