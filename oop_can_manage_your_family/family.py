@@ -1,27 +1,43 @@
 import json
 import os
+import itertools
 
 def save_to_file(list, filename):
- json_data = []
-
- # loop through list of Person instances;
- # create a hash of attr.'s from each instance;
- # add a kind key-value pair to each hash;
- # and append each hash to json_data
- for x in list:
-  hash = json(x)
-  default_data['kind'] = x.__class__.__name__
-  json_data.append(hash)
-  
- # save json_data to file 
- with open(filename, 'w') as outfile:
-     json.dump(json_data, outfile)
+    json_data = []
+    # loop through list of Person instances;
+    # create a hash of attr.'s from each instance;
+    # and append each hash to json_data
+    for x in list:
+        hash = x.json()
+        json_data.append(hash)
+    # encode json_data & save to file
+    with open(filename, 'w') as outfile:
+        json.dump(json_data, outfile)
 
 def load_from_file(filename):
     if type(filename) != str or os.path.isfile(filename) != True:
         raise Exception("filename is not valid or doesn't exist")
     with open(filename) as data_file:
         json_data = json.load(data_file)
+    # initilize list
+    list = []
+    for x in json_data:
+        if x['kind'] == "Baby":
+            # initialize Baby object
+            person = Baby(1, "foo", [1,01,0000], "Female", "Blue")
+        elif x['kind'] == "Teenager":
+            # initialize Teenager object
+            person = Teenager(1, "foo", [1,01,0000], "Female", "Blue")
+        elif x['kind'] == "Adult":
+            # initialize Adult object
+            person = Adult(1, "foo", [1,01,0000], "Female", "Blue")
+        else:
+            # initialize Senior object
+            person = Senior(1, "foo", [1,01,0000], "Female", "Blue")
+        # set attributes for object from hash
+        print person
+        person.load_from_json(x)
+        list.append(person)
     return list
 
 class Person:
@@ -29,7 +45,7 @@ class Person:
     # define class attributes
     EYES_COLORS = ["Blue", "Green", "Brown"]
     GENRES = ["Female", "Male"]
-    
+
     def __init__(self, id, first_name, date_of_birth, genre, eyes_color):
         # define object attributes
         self.__id = id
@@ -38,7 +54,7 @@ class Person:
         self.__date_of_birth = date_of_birth
         self.__genre = genre
         self.__eyes_color = eyes_color
-        
+
         # set cases to raise exceptions
         if id < 0 or type(id) != int:
             raise Exception("id is not an integer")
@@ -56,8 +72,7 @@ class Person:
             raise Exception("genre is not valid")
         if type(eyes_color) != str or eyes_color not in Person.EYES_COLORS:
             raise Exception("eyes_color is not valid")
-        pass
-    
+
     # define getter functions
     def get_id(self):
         return self.__id
@@ -91,7 +106,7 @@ class Person:
 
     def __ne__(self, other):
         return Person.age(self) != Person.age(other)
-    
+
     def is_male(self):
         if self.__genre == "Male":
             return True
@@ -107,7 +122,7 @@ class Person:
 
     # json methods
     def json(self):
-        return {'id': self.__id, 'eyes_color': self.__eyes_color, 'genre': self.__genre, 'date_of_birth': self.__date_of_birth, 'first_name': self.__first_name, 'last_name': self.last_name}
+        return {'kind': self.__class__.__name__, 'id': self.__id, 'eyes_color': self.__eyes_color, 'genre': self.__genre, 'date_of_birth': self.__date_of_birth, 'first_name': self.__first_name, 'last_name': self.last_name}
 
     def load_from_json(self, json):
         if type(json) != dict:
@@ -118,8 +133,8 @@ class Person:
         self.__date_of_birth = json['date_of_birth']
         self.__first_name = json['first_name']
         self.__last_name = json['last_name']
-    
-        
+
+
 class Baby(Person):
     def can_run(self):
         return False
@@ -133,7 +148,7 @@ class Baby(Person):
     def can_vote(self):
         return False
 
-    
+
 class Teenager(Person):
     def can_run(self):
         return True
