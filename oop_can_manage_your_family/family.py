@@ -2,6 +2,7 @@ import json
 import os
 import itertools
 
+# global functions
 def save_to_file(list, filename):
     json_data = []
     # loop through list of Person instances;
@@ -41,7 +42,6 @@ def load_from_file(filename):
     return list
 
 class Person:
-
     # define class attributes
     EYES_COLORS = ["Blue", "Green", "Brown"]
     GENRES = ["Female", "Male"]
@@ -50,10 +50,11 @@ class Person:
         # define object attributes
         self.__id = id
         self.__first_name = first_name
-        self.last_name = "[unassigned]"
+        self.last_name = ""
         self.__date_of_birth = date_of_birth
         self.__genre = genre
         self.__eyes_color = eyes_color
+        self.is_married_to = 0
 
         # set cases to raise exceptions
         if id < 0 or type(id) != int:
@@ -122,7 +123,14 @@ class Person:
 
     # json methods
     def json(self):
-        return {'kind': self.__class__.__name__, 'id': self.__id, 'eyes_color': self.__eyes_color, 'genre': self.__genre, 'date_of_birth': self.__date_of_birth, 'first_name': self.__first_name, 'last_name': self.last_name}
+        return {'kind': self.__class__.__name__,
+                'id': self.__id,
+                'eyes_color': self.__eyes_color,
+                'genre': self.__genre,
+                'date_of_birth': self.__date_of_birth,
+                'first_name': self.__first_name,
+                'last_name': self.last_name,
+                'is_married_to': self.is_married_to}
 
     def load_from_json(self, json):
         if type(json) != dict:
