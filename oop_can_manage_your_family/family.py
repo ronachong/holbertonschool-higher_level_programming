@@ -156,6 +156,9 @@ class Baby(Person):
     def can_vote(self):
         return False
 
+    def can_be_married(self):
+        return False
+
 
 class Teenager(Person):
     def can_run(self):
@@ -168,6 +171,9 @@ class Teenager(Person):
         return True
 
     def can_vote(self):
+        return False
+
+    def can_be_married(self):
         return False
 
 
@@ -184,6 +190,9 @@ class Adult(Person):
     def can_vote(self):
         return True
 
+    def can_be_married(self):
+        return True
+
 
 class Senior(Person):
     def can_run(self):
@@ -196,4 +205,7 @@ class Senior(Person):
         return False
 
     def can_vote(self):
+        return True
+
+    def can_be_married(self):
         return True
