@@ -30,6 +30,11 @@ class Mentor: Person {
         return false
     }
 
+    func stringSubject() -> String {
+      // returns a printable string of the subject
+      return "\(subject)"
+    }
+
 }
 
 class Student: Person {
