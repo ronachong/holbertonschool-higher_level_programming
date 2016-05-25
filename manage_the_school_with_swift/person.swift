@@ -29,3 +29,8 @@ class Student: Person {
         return true
     }
 }
+
+enum Subject: Int {
+    case Math = 1
+    case English, French, History
+}
