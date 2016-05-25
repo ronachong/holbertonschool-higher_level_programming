@@ -21,14 +21,15 @@ class Person {
 class Mentor: Person {
     let subject: Subject?
 
-    override func isStudent() -> Bool {
-        return false
-    }
-
     init(first_name: String, last_name: String, age: Int, subject: Subject = Subject.Math) {
         self.subject = subject
         super.init(first_name: first_name, last_name: last_name, age: age)
     }
+
+    override func isStudent() -> Bool {
+        return false
+    }
+
 }
 
 class Student: Person {
