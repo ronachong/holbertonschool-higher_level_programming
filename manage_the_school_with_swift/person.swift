@@ -12,4 +12,20 @@ class Person {
     func fullName() -> String {
         return self.first_name + " " + self.last_name
     }
+
+    func isStudent() -> Bool {
+        return false
+    }
+}
+
+class Mentor: Person {
+    override func isStudent() -> Bool {
+        return false
+    }
+}
+
+class Student: Person {
+    override func isStudent() -> Bool {
+        return true
+    }
 }
