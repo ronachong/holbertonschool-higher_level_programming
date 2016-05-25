@@ -43,6 +43,36 @@ class Student: Person {
     }
 }
 
+class School {
+    var name: String
+    var list_persons: [Person]
+
+    init(name: String) {
+        self.name = name
+        self.list_persons = []
+    }
+
+    func addStudent(p: Person) -> Bool {
+    // adds p to list_persons if p is a Student
+        if p is Student {
+            self.list_persons.append(p)
+            return true
+        }
+        // else
+        return false
+    }
+
+    func addMentor(p: Person) -> Bool {
+    // adds p to list_persons if p is a Mentor
+        if p is Mentor {
+            self.list_persons.append(p)
+            return true
+        }
+        // else
+        return false
+    }
+}
+
 enum Subject: Int {
     case Math = 1
     case English, French, History
