@@ -72,6 +72,26 @@ class School {
         // else
         return false
     }
+
+    func listStudents() -> [Person] {
+        var students = self.list_persons.filter {($0 is Student)}
+        students.sortInPlace {($0.age > $1.age)}
+        return students
+    }
+
+    func listMentors() -> [Person] {
+        var mentors = self.list_persons.filter {($0 is Mentor)}
+        mentors.sortInPlace {($0.age > $1.age)}
+        return mentors
+    }
+
+    func listMentorsBySubject(subject: Subject) -> [Person] {
+        let mentors = self.listMentors() as! [Mentor]
+        let mentorsBySubject: [Mentor] = mentors.filter { (mentor: Mentor) -> Bool in
+            mentor.subject! == subject
+        }
+        return mentorsBySubject
+    }
 }
 
 enum Subject: Int {
