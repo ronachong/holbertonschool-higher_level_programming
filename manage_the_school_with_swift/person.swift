@@ -32,7 +32,7 @@ class Mentor: Person {
 
     func stringSubject() -> String {
       // returns a printable string of the subject
-      return "\(subject)"
+      return "\(self.subject!)"
     }
 
 }
