@@ -13,12 +13,13 @@ class Person {
         return self.first_name + " " + self.last_name
     }
 
-    func isStudent() -> Bool {
-        return false
-    }
 }
 
-class Mentor: Person {
+protocol Classify {
+    func isStudent() -> Bool
+}
+
+class Mentor: Person, Classify {
     let subject: Subject?
 
     init(first_name: String, last_name: String, age: Int, subject: Subject = Subject.Math) {
@@ -26,19 +27,19 @@ class Mentor: Person {
         super.init(first_name: first_name, last_name: last_name, age: age)
     }
 
-    override func isStudent() -> Bool {
+    func isStudent() -> Bool {
         return false
     }
 
     func stringSubject() -> String {
-      // returns a printable string of the subject
-      return "\(self.subject!)"
+        // returns a printable string of the subject
+        return String("\(self.subject!)")
     }
 
 }
 
-class Student: Person {
-    override func isStudent() -> Bool {
+class Student: Person, Classify {
+    func isStudent() -> Bool {
         return true
     }
 }
