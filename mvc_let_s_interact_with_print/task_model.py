@@ -9,7 +9,7 @@ class TaskModel:
         # set_callback_title.
 
     def __str__(self):
-        print self.__title
+        return self.__title
 
     def get_title(self):
         return self.__title
@@ -21,8 +21,7 @@ class TaskModel:
     def toggle(self):
     # toggle_self reverses the value of title and calls the callback assigned to
     # self.callback_title
-        self.__title = self.__title[::-1] # uses string slicing to step backwards
-        # thru string
+        self.__title = self.__title[::-1] # use string slicing
 
         # if self.__callback_title is set:
         if self.__callback_title != None:
