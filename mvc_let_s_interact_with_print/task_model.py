@@ -1,7 +1,7 @@
 class TaskModel:
 
     def __init__(self, title):
-        if title = "" or type(title) != str:
+        if title == "" or type(title) != str:
             raise Exception("title is not a string")
 
         self.__title = title
@@ -21,7 +21,7 @@ class TaskModel:
         self.__callback_title = value
 
     # other methods
-    def toggle_self:
+    def toggle(self):
     # toggle_self reverses the value of title and calls the callback assigned to self.callback_title
         self.__title = self.__title[::-1] # uses string slicing to step backwards thru string
 
