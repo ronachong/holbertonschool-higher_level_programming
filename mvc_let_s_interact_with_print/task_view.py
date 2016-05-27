@@ -3,7 +3,7 @@ import Tkinter as tk
 # description of View
 class TaskView(tk.Toplevel): # inherit from Toplevel widget/Tinker class
     def __init__(self, master):
-        if master is not self.Tk(): # if master is not a tk root widget;
+        if isinstance(master, tk.Tk) == False: # if master is not a tk root widget;
                                     # not sure if code needs more iteration.
                                     # do I use tk, or self, since self inherits from tk?
             raise Exception("master is not a tk.Tk()")
