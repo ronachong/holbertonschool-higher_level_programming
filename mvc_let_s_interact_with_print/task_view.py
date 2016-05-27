@@ -4,12 +4,10 @@ import Tkinter as tk
 class TaskView(tk.Toplevel): # inherit from Toplevel widget/Tinker class
     def __init__(self, master):
         if isinstance(master, tk.Tk) == False: # if master is not a tk root widget;
-                                    # not sure if code needs more iteration.
-                                    # do I use tk, or self, since self inherits from tk?
             raise Exception("master is not a tk.Tk()")
 
         # else
-        tk.Toplevel.__init(self, master) # init attributes according to Toplevel..?
+        tk.Toplevel.__init__(self, master) # init attributes according to Toplevel..?
         self.protocol('WM_DELETE_WINDOW', self.master.destroy)  # idk what this does.
                                                                 # probably call protocol defined in Toplevel to destroy
                                                                 # the master - but don't we need the old master...?
