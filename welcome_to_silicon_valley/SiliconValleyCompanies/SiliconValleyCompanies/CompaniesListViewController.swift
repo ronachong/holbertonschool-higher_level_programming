@@ -39,15 +39,22 @@ class CompaniesListViewController: UITableViewController {
         return companiesList.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("CompanyCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        // make label for each cell the company title
+        cell.textLabel?.text = companiesList[indexPath.row]
+        
+        // make subtitle "I love studying" or "I love working"
+        if companiesList[indexPath.row] == "Holberton" {
+            cell.detailTextLabel?.text = "I love studying"
+        }
+        else {
+            cell.detailTextLabel?.text = "I love working"
+        }
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
