@@ -13,11 +13,11 @@ class TaskView(tk.Toplevel): # inherit from Toplevel widget/Tinker class
                                                                 # the master - but don't we need the old master...?
 
         # set private attributes
-        self._title_var = self.StringVar() # type = tk.StringVar(), i.e. string widget
-        self._title_label = self.Label(master, text=self._title_var) # type = tk.Label(), i.e. label widget
+        self._title_var = tk.StringVar() # type = tk.StringVar(), i.e. string widget
+        self._title_label = tk.Label(master, text=self._title_var) # type = tk.Label(), i.e. label widget
 
         # set public attributes
-        self.toggle_button = self.Button(
+        self.toggle_button = tk.Button(
             frame, text="reverse"
         ) # tk.Button, i.e. a button widget, text = Reverse?
 
