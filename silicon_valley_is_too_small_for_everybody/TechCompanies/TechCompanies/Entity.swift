@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+enum EntityType: String {
+    case None
+    case School
+    case TechCompany
+}
