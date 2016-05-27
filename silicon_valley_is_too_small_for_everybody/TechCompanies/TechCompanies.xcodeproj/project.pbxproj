@@ -97,6 +97,8 @@
 		5F19BFD01CF9070F0022EE8B /* TechCompanies */ = {
 			isa = PBXGroup;
 			children = (
+				5F19C0001CF907ED0022EE8B /* ViewControllers */,
+				5F19BFFF1CF907D50022EE8B /* Models */,
 				5F19BFD11CF9070F0022EE8B /* AppDelegate.swift */,
 				5F19BFD31CF9070F0022EE8B /* ViewController.swift */,
 				5F19BFD51CF9070F0022EE8B /* Main.storyboard */,
@@ -123,6 +125,20 @@
 				5F19BFF31CF9070F0022EE8B /* Info.plist */,
 			);
 			path = TechCompaniesUITests;
+			sourceTree = "<group>";
+		};
+		5F19BFFF1CF907D50022EE8B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		5F19C0001CF907ED0022EE8B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
