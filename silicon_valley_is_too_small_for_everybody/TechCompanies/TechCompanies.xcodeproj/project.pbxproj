@@ -14,6 +14,7 @@
 		5F19BFDC1CF9070F0022EE8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F19BFDA1CF9070F0022EE8B /* LaunchScreen.storyboard */; };
 		5F19BFE71CF9070F0022EE8B /* TechCompaniesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F19BFE61CF9070F0022EE8B /* TechCompaniesTests.swift */; };
 		5F19BFF21CF9070F0022EE8B /* TechCompaniesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F19BFF11CF9070F0022EE8B /* TechCompaniesUITests.swift */; };
+		5F19C0021CF908F20022EE8B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F19C0011CF908F20022EE8B /* Entity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		5F19BFED1CF9070F0022EE8B /* TechCompaniesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TechCompaniesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F19BFF11CF9070F0022EE8B /* TechCompaniesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechCompaniesUITests.swift; sourceTree = "<group>"; };
 		5F19BFF31CF9070F0022EE8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F19C0011CF908F20022EE8B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,14 +99,14 @@
 		5F19BFD01CF9070F0022EE8B /* TechCompanies */ = {
 			isa = PBXGroup;
 			children = (
-				5F19C0001CF907ED0022EE8B /* ViewControllers */,
-				5F19BFFF1CF907D50022EE8B /* Models */,
 				5F19BFD11CF9070F0022EE8B /* AppDelegate.swift */,
 				5F19BFD31CF9070F0022EE8B /* ViewController.swift */,
 				5F19BFD51CF9070F0022EE8B /* Main.storyboard */,
 				5F19BFD81CF9070F0022EE8B /* Assets.xcassets */,
 				5F19BFDA1CF9070F0022EE8B /* LaunchScreen.storyboard */,
 				5F19BFDD1CF9070F0022EE8B /* Info.plist */,
+				5F19C0001CF907ED0022EE8B /* ViewControllers */,
+				5F19BFFF1CF907D50022EE8B /* Models */,
 			);
 			path = TechCompanies;
 			sourceTree = "<group>";
@@ -130,6 +132,7 @@
 		5F19BFFF1CF907D50022EE8B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5F19C0011CF908F20022EE8B /* Entity.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			files = (
 				5F19BFD41CF9070F0022EE8B /* ViewController.swift in Sources */,
 				5F19BFD21CF9070F0022EE8B /* AppDelegate.swift in Sources */,
+				5F19C0021CF908F20022EE8B /* Entity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
