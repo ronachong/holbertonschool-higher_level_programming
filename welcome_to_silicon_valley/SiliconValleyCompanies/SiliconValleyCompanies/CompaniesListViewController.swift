@@ -9,7 +9,9 @@
 import UIKit
 
 class CompaniesListViewController: UITableViewController {
-
+    
+    var companiesList = TechCompaniesHelper.getTechCompanies() // we don't need to create instance of class to get cmpys?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +31,7 @@ class CompaniesListViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1 // how is this supposed to implement "info of attr companiesList?
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
