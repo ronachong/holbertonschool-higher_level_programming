@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+// EntitiesHelper is a helper class to populate the list of schools and list of tech companies.
 class EntitiesHelper {
     
     // make two lists, one for schools, one for tech co.'s

@@ -16,6 +16,9 @@ class TechCompaniesListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        techCompanyList = EntitiesHelper.getTechCompanies()
+        schoolList = EntitiesHelper.getTechCompanies()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

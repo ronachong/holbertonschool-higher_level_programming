@@ -8,12 +8,14 @@
 
 import Foundation
 
+// EntityType is an enum which enumerates different types for Entity instances.
 enum EntityType: String {
     case None
     case School
     case TechCompany
 }
 
+// Entity is a class representing institutional entities to portray in a table view.
 class Entity {
     private var name: String
     private var town: String
