@@ -13,6 +13,7 @@ class TechCompaniesListViewController: UITableViewController {
     // set class attributes (list of schools, and list of tech companies)
     var schoolList: [Entity]!
     var techCompanyList: [Entity]!
+    let techDetailSegue = "techDetailSg"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,30 @@ class TechCompaniesListViewController: UITableViewController {
         
         return cell
     }
+    
+
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("sender is " + String(sender!))
+     // Get the new view controller using segue.destinationViewController.
+        
+        // for segue to detail
+        if segue.identifier == techDetailSegue {
+            if let destinationViewController = segue.destinationViewController as? TechCompanyDetailViewController { // set destination vc to detail view controller
+                // if cast was successful,
+                // pass appropriate entity to represent to new view controller, according to section and row.
+                if sender!.indexPath.section == 0 {
+                    destinationViewController.entity = techCompanyList[sender!.indexPath.row]
+                }
+                else if sender!.indexPath.section == 1 {
+                    destinationViewController.entity = schoolList[sender!.indexPath.row]
+                }
+            }
+        }
+     }
+
 
     /*
     // Override to support conditional editing of the table view.
@@ -119,16 +144,6 @@ class TechCompaniesListViewController: UITableViewController {
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     */
 
