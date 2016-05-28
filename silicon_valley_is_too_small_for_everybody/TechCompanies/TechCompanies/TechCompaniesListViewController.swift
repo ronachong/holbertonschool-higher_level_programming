@@ -18,9 +18,8 @@ class TechCompaniesListViewController: UITableViewController {
         super.viewDidLoad()
         
         techCompanyList = EntitiesHelper.getTechCompanies()
-        schoolList = EntitiesHelper.getTechCompanies()
-        print("Lists should have been populated.")
-
+        schoolList = EntitiesHelper.getSchools()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -51,13 +50,9 @@ class TechCompaniesListViewController: UITableViewController {
         }
         
         // # for schools sxn (arbitrarily sxn 1)
-        else if section == 1 {
+        else {
             // return # of schools as # of rows
             return schoolList.count
-        }
-        
-        else {
-            return 0
         }
     }
 
@@ -67,33 +62,28 @@ class TechCompaniesListViewController: UITableViewController {
             return "Tech Companies"
         }
         
-        else if section == 1 {
-            return "Schools"
-        }
-        
         else {
-            return "test"
+            return "Schools"
         }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("techCell", forIndexPath: indexPath)
-
-        cell.textLabel?.text = "test"
-/*
+        print(String(indexPath))
         // Configure the cell...
         // for companies sxn
-        if indexPath == 0 {
+        if indexPath.section == 0 {
             cell.textLabel?.text = schoolList[indexPath.row].name
             cell.detailTextLabel?.text = "I love studying"
             
         }
         
         // for schools sxn
-        else if indexPath == 1 {
+        else if indexPath.section == 1 {
             cell.textLabel?.text = techCompanyList[indexPath.row].name
             cell.detailTextLabel?.text = "I love working"
-        }*/
+        }
+        
         return cell
     }
 
