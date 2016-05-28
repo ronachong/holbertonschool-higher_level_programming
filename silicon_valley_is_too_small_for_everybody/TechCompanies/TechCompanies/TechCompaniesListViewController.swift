@@ -14,13 +14,12 @@ class TechCompaniesListViewController: UITableViewController {
     var schoolList: [Entity]!
     var techCompanyList: [Entity]!
     
-    var sectionNames = ["Tech Companies", "Schools"]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         techCompanyList = EntitiesHelper.getTechCompanies()
         schoolList = EntitiesHelper.getTechCompanies()
+        print("Lists should have been populated.")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -38,7 +37,7 @@ class TechCompaniesListViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // return the number of sections
-        return self.sectionNames.count // go by sectionNames to determine # of sxns.
+        return 2
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,6 +46,7 @@ class TechCompaniesListViewController: UITableViewController {
         // for tech companies (arbitrarily sxn 0)
         if section == 0 {
             // return # of companies as # of rows
+            print(techCompanyList.count)
             return techCompanyList.count
         }
         
@@ -63,18 +63,39 @@ class TechCompaniesListViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         // return title for section
-        return sectionNames[section] // use section # as index in list to find name
+        if section == 0 {
+            return "Tech Companies"
+        }
+        
+        else if section == 1 {
+            return "Schools"
+        }
+        
+        else {
+            return "test"
+        }
     }
     
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("techCell", forIndexPath: indexPath)
 
+        cell.textLabel?.text = "test"
+/*
         // Configure the cell...
-
+        // for companies sxn
+        if indexPath == 0 {
+            cell.textLabel?.text = schoolList[indexPath.row].name
+            cell.detailTextLabel?.text = "I love studying"
+            
+        }
+        
+        // for schools sxn
+        else if indexPath == 1 {
+            cell.textLabel?.text = techCompanyList[indexPath.row].name
+            cell.detailTextLabel?.text = "I love working"
+        }*/
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
