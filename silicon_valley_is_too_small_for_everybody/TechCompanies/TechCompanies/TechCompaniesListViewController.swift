@@ -10,6 +10,10 @@ import UIKit
 
 class TechCompaniesListViewController: UITableViewController {
 
+    // set class attributes (list of schools, and list of tech companies)
+    var schoolList: [Entity]!
+    var techCompanyList: [Entity]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
