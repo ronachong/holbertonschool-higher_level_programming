@@ -73,15 +73,15 @@ class TechCompaniesListViewController: UITableViewController {
         // Configure the cell...
         // for companies sxn
         if indexPath.section == 0 {
-            cell.textLabel?.text = schoolList[indexPath.row].name
-            cell.detailTextLabel?.text = "I love studying"
+            cell.textLabel?.text = techCompanyList[indexPath.row].name
+            cell.detailTextLabel?.text = "I love working"
             
         }
         
         // for schools sxn
         else if indexPath.section == 1 {
-            cell.textLabel?.text = techCompanyList[indexPath.row].name
-            cell.detailTextLabel?.text = "I love working"
+            cell.textLabel?.text = schoolList[indexPath.row].name
+            cell.detailTextLabel?.text = "I love studying"
         }
         
         return cell
