@@ -37,6 +37,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="rWQ-Fg-g75" kind="show" identifier="techDetailSg" id="s5L-rX-Abw"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -48,7 +51,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHy-ta-bUX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="495" y="437"/>
+            <point key="canvasLocation" x="485" y="437"/>
         </scene>
         <!--Tech Company Detail View Controller-->
         <scene sceneID="iht-2E-fAf">
