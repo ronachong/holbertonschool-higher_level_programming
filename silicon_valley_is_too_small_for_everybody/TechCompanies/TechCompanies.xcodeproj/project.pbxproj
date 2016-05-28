@@ -15,6 +15,7 @@
 		5F19BFE71CF9070F0022EE8B /* TechCompaniesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F19BFE61CF9070F0022EE8B /* TechCompaniesTests.swift */; };
 		5F19BFF21CF9070F0022EE8B /* TechCompaniesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F19BFF11CF9070F0022EE8B /* TechCompaniesUITests.swift */; };
 		5F19C0021CF908F20022EE8B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F19C0011CF908F20022EE8B /* Entity.swift */; };
+		5F19C0041CF945990022EE8B /* EntitiesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F19C0031CF945990022EE8B /* EntitiesHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		5F19BFF11CF9070F0022EE8B /* TechCompaniesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechCompaniesUITests.swift; sourceTree = "<group>"; };
 		5F19BFF31CF9070F0022EE8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F19C0011CF908F20022EE8B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		5F19C0031CF945990022EE8B /* EntitiesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitiesHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				5F19C0011CF908F20022EE8B /* Entity.swift */,
+				5F19C0031CF945990022EE8B /* EntitiesHelper.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F19C0041CF945990022EE8B /* EntitiesHelper.swift in Sources */,
 				5F19BFD41CF9070F0022EE8B /* ViewController.swift in Sources */,
 				5F19BFD21CF9070F0022EE8B /* AppDelegate.swift in Sources */,
 				5F19C0021CF908F20022EE8B /* Entity.swift in Sources */,
