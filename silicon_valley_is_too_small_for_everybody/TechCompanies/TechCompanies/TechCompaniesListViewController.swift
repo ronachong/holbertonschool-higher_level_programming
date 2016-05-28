@@ -61,7 +61,7 @@ class TechCompaniesListViewController: UITableViewController {
         }
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         // return title for section
         return sectionNames[section] // use section # as index in list to find name
     }
