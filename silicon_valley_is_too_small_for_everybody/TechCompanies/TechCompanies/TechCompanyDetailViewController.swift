@@ -19,6 +19,12 @@ class TechCompanyDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if entity != nil {
+            // assign title, label text, and image according to entity
+            self.title = entity.name
+            label_entity.text = entity.town
+            image_entity.image = UIImage(named: entity.name)
+        }
     }
 
     override func didReceiveMemoryWarning() {
