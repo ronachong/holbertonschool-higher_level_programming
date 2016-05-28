@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="495" y="437"/>
         </scene>
-        <!--View Controller-->
+        <!--Tech Company Detail View Controller-->
         <scene sceneID="iht-2E-fAf">
             <objects>
-                <viewController id="rWQ-Fg-g75" sceneMemberID="viewController">
+                <viewController id="rWQ-Fg-g75" customClass="TechCompanyDetailViewController" customModule="TechCompanies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="07T-Xw-ody"/>
                         <viewControllerLayoutGuide type="bottom" id="5cY-wr-Zgg"/>
@@ -88,6 +88,10 @@
                             <constraint firstItem="cBG-23-iKd" firstAttribute="centerX" secondItem="l2S-Rn-f5y" secondAttribute="centerX" id="w74-Wr-4wE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="image_entity" destination="yfe-cw-ART" id="OV8-zN-vgY"/>
+                        <outlet property="label_entity" destination="cBG-23-iKd" id="SmQ-9f-B9G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygr-a2-z85" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

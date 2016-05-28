@@ -9,7 +9,12 @@
 import UIKit
 
 class TechCompanyDetailViewController: UIViewController {
-
+    
+    var entity: Entity! = nil
+    @IBOutlet weak var label_entity: UILabel!
+    @IBOutlet weak var image_entity: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
