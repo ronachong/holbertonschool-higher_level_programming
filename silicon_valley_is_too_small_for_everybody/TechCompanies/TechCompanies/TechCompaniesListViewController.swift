@@ -14,6 +14,8 @@ class TechCompaniesListViewController: UITableViewController {
     var schoolList: [Entity]!
     var techCompanyList: [Entity]!
     
+    var sectionNames = ["Tech Companies", "Schools"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,13 +37,28 @@ class TechCompaniesListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        // return the number of sections
+        return self.sectionNames.count // go by sectionNames to determine # of sxns.
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        // return the number of rows
+        
+        // for tech companies (arbitrarily sxn 0)
+        if section == 0 {
+            // return # of companies as # of rows
+            return techCompanyList.count
+        }
+        
+        // # for schools sxn (arbitrarily sxn 1)
+        else if section == 1 {
+            // return # of schools as # of rows
+            return schoolList.count
+        }
+        
+        else {
+            return 0
+        }
     }
 
     /*
