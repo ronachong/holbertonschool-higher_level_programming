@@ -101,6 +101,8 @@ class TechCompaniesListViewController: UITableViewController {
             if let destinationViewController = segue.destinationViewController as? TechCompanyDetailViewController { // set destination vc to detail view controller
                 // if cast was successful,
                 // pass appropriate entity to represent to new view controller, according to section and row.
+                print ("indexPath of sender is " + String(sender!.indexPath))
+                print ("section of indexPath of sender is " + String(sender!.indexPath.section))
                 if sender!.indexPath.section == 0 {
                     destinationViewController.entity = techCompanyList[sender!.indexPath.row]
                 }
