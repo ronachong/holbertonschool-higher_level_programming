@@ -61,6 +61,11 @@ class TechCompaniesListViewController: UITableViewController {
         }
     }
 
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // return title for section
+        return sectionNames[section] // use section # as index in list to find name
+    }
+    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
