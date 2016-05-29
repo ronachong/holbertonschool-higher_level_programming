@@ -98,16 +98,18 @@ class TechCompaniesListViewController: UITableViewController {
         
         // for segue to detail
         if segue.identifier == techDetailSegue {
+            let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell)
+            
             if let destinationViewController = segue.destinationViewController as? TechCompanyDetailViewController { // set destination vc to detail view controller
                 // if cast was successful,
                 // pass appropriate entity to represent to new view controller, according to section and row.
-                print ("indexPath of sender is " + String(sender!.indexPath))
-                print ("section of indexPath of sender is " + String(sender!.indexPath.section))
-                if sender!.indexPath.section == 0 {
-                    destinationViewController.entity = techCompanyList[sender!.indexPath.row]
+                //print ("indexPath of sender is " + String(sender!.indexPath))
+                //print ("section of indexPath of sender is " + String(sender!.indexPath.section))
+                if indexPath!.section == 0 {
+                    destinationViewController.entity = techCompanyList[indexPath!.row]
                 }
-                else if sender!.indexPath.section == 1 {
-                    destinationViewController.entity = schoolList[sender!.indexPath.row]
+                else if indexPath!.section == 1 {
+                    destinationViewController.entity = schoolList[indexPath!.row]
                 }
             }
         }
