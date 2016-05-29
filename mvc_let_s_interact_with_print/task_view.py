@@ -17,7 +17,7 @@ class TaskView(tk.Toplevel): # inherit from Toplevel widget/Tinker class
         self.__title_label = tk.Label(self, textvariable=self.__title_var) # label widget
 
         # set public attributes
-        self.toggle_button = tk.Button(self, text="reverse", command=self.master.destroy) # tk.Button, i.e. a button widget, text = Reverse?
+        self.toggle_button = tk.Button(self, text="reverse") # tk.Button, i.e. a button widget, text = Reverse?
 
         # pack widgets
         self.toggle_button.pack(side=tk.LEFT)

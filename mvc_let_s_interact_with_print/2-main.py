@@ -1,3 +1,5 @@
+import Tkinter as tk
+
 from task_model import TaskModel
 from task_view import TaskView
 from task_controller import TaskController
