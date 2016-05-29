@@ -46,7 +46,6 @@ class TechCompaniesListViewController: UITableViewController {
         // for tech companies (arbitrarily sxn 0)
         if section == 0 {
             // return # of companies as # of rows
-            print(techCompanyList.count)
             return techCompanyList.count
         }
         
@@ -70,7 +69,6 @@ class TechCompaniesListViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("techCell", forIndexPath: indexPath)
-        print(String(indexPath))
         // Configure the cell...
         // for companies sxn
         if indexPath.section == 0 {
@@ -93,7 +91,6 @@ class TechCompaniesListViewController: UITableViewController {
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("sender is " + String(sender!))
      // Get the new view controller using segue.destinationViewController.
         
         // for segue to detail
@@ -103,8 +100,6 @@ class TechCompaniesListViewController: UITableViewController {
             if let destinationViewController = segue.destinationViewController as? TechCompanyDetailViewController { // set destination vc to detail view controller
                 // if cast was successful,
                 // pass appropriate entity to represent to new view controller, according to section and row.
-                //print ("indexPath of sender is " + String(sender!.indexPath))
-                //print ("section of indexPath of sender is " + String(sender!.indexPath.section))
                 if indexPath!.section == 0 {
                     destinationViewController.entity = techCompanyList[indexPath!.row]
                 }
