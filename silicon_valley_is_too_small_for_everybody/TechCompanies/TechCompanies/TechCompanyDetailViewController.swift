@@ -10,7 +10,7 @@ import UIKit
 
 class TechCompanyDetailViewController: UIViewController {
     
-    var entity: Entity! = Entity(name: "foo", town: "foo", imageName: "foo")
+    var entity: Entity! = nil
     @IBOutlet weak var label_entity: UILabel!
     @IBOutlet weak var image_entity: UIImageView!
     
