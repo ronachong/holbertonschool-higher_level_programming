@@ -17,7 +17,7 @@ class TechCompaniesListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Silicon Valley Entities"
         techCompanyList = EntitiesHelper.getTechCompanies()
         schoolList = EntitiesHelper.getSchools()
         
