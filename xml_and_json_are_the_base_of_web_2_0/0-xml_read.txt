@@ -1,0 +1,7 @@
+1) How many catalog_item elements in the XML?
+2) How many size elements in catalog_item where the gender="Women's" in the XML
+3) What's the value of the first color_swatch for a Women's Medium item?
+4) What's the price of the Men's item?
+5) How many different image value are present in the XML?
+6) What's the name of the first children of a catalog_item element?
+7) What's the name of the first children of a size element?
