@@ -1,6 +1,6 @@
-1) What's the value of firstName?
-2) What's the value of age?
-3) What's the value of the postalCode of the address?
-4) How many keys are used for defining a phoneNumber?
-5) How many keys are used for defining the full JSON?
-6) What's the value of the type of first phoneNumber?
+1) John
+2) 25
+3) 10021
+4) 2
+5) 11
+6) home
