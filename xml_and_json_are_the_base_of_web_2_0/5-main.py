@@ -15,7 +15,7 @@ cnb_doors = 0
 # create root element for DOM document which will contain all cars
 doc = minidom.Document()
 cars = doc.createElement("cars")
-doc.appendChild(cars)
+doc.appendChild(cars) # root element
 
 # for every car hash in <variable>, call car constructor with hash as dictionary
 for i in file_contents:
@@ -24,7 +24,9 @@ for i in file_contents:
     # get brand of car, number of doors
     brand = car.get_brand()
     nb_doors = car.get_nb_doors()
-    car_xml = car.to_xml_node(cars)
+
+    # create car xml element
+    car_xml = car.to_xml_node(doc)
 
     # check if brand has already been accounted for in brands
     # (if not, add)
@@ -34,7 +36,7 @@ for i in file_contents:
     # add number of doors from car to cnb_doors
     cnb_doors += nb_doors
 
-    # add car element to cars xml
+    # add car element to xml doc, inside cars element
     cars.appendChild(car_xml)
 
 # print number of different brands, print cumulative number of doors
@@ -45,5 +47,5 @@ print cnb_doors
 last_car = Car(file_contents[-1])
 print last_car
 
-# print cars xml document
-print cars
+# print xml document
+print doc.toxml(encoding='utf-8')
