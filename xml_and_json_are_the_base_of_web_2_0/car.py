@@ -10,16 +10,16 @@ class Car:
         elif len(*args) > 0 and isinstance(args[0], dict):
             # assume that args is hash of attributes
             hash = args[0]
-
+            
         # get values from hash
         name = hash.get('name')
         brand = hash.get('brand')
         nb_doors = hash.get('nb_doors')
 
         # raise exceptions given improper argument values
-        if name == "" or type(name) != str:
+        if name == "" or type(name) != unicode:
             raise Exception("name is not a string")
-        if brand == "" or type(brand) != str:
+        if brand == "" or type(brand) != unicode:
             raise Exception("brand is not a string")
         if type(nb_doors) != int or nb_doors <= 0:
             raise Exception("nb_doors is not > 0")
