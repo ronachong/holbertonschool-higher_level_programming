@@ -10,7 +10,7 @@ class Car:
         elif len(*args) > 0 and isinstance(args[0], dict):
             # assume that args is hash of attributes
             hash = args[0]
-            
+
         # get values from hash
         name = hash.get('name')
         brand = hash.get('brand')
@@ -53,7 +53,6 @@ class Car:
     def to_xml_node(self, doc):
         car_element = doc.createElement('car')
         car_element.setAttribute('nb_doors', str(self.__nb_doors))
-        doc.appendChild(car_element)
 
         name_element = doc.createElement('name')
         name_content = doc.createCDATASection(self.__name)
