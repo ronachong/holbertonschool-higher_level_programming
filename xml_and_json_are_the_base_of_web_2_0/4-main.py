@@ -1,3 +1,4 @@
+from xml.dom.minidom import Document
 from car import Car
 
 c = Car(name="Rogue", brand="Nissan", nb_doors=5)
