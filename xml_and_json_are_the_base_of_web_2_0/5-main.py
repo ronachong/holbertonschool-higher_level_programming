@@ -43,8 +43,8 @@ for i in file_contents:
 print len(brands)
 print cnb_doors
 
-# print description of last car
-last_car = Car(file_contents[-1])
+# print description of 4th car
+last_car = Car(file_contents[3])
 print last_car
 
 # print xml document
