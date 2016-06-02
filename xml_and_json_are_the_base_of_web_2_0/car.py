@@ -16,10 +16,16 @@ class Car:
         brand = hash.get('brand')
         nb_doors = hash.get('nb_doors')
 
+        # cast any unicode values to string
+        if type(name) is unicode:
+            name = str(name)
+        if type(brand) is unicode:
+            brand = str(brand)
+
         # raise exceptions given improper argument values
-        if name == "" or type(name) != unicode:
+        if name == "" or type(name) != str:
             raise Exception("name is not a string")
-        if brand == "" or type(brand) != unicode:
+        if brand == "" or type(name) != str:
             raise Exception("brand is not a string")
         if type(nb_doors) != int or nb_doors <= 0:
             raise Exception("nb_doors is not > 0")
