@@ -20,3 +20,20 @@ class Car:
         self.__name = name
         self.__brand = brand
         self.__nb_doors = nb_doors
+
+    # getter instance methods
+    def get_name(self):
+        return self.__name
+
+    def get_brand(self):
+        return self.__brand
+
+    def get_nb_doors(self):
+        return self.__nb_doors
+
+    # other instance methods
+    def to_hash(self):
+        return {'name': self.__name, 'brand': self.__brand, 'nb_doors': self.__nb_doors}
+
+    def __str__(self):
+        return self.__name + " " + self.__brand + " (" + str(self.__nb_doors) + ")"
