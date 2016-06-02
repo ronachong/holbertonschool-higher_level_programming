@@ -31,6 +31,10 @@ class Car:
     def get_nb_doors(self):
         return self.__nb_doors
 
+    # setter instance method
+    def set_nb_doors(self, number):
+        self.__nb_doors = number
+
     # other instance methods
     def to_hash(self):
         return {'name': self.__name, 'brand': self.__brand, 'nb_doors': self.__nb_doors}
