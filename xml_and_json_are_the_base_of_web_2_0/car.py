@@ -1,12 +1,16 @@
 class Car:
     def __init__(self, *args, **kwargs):
         if len(kwargs) > 0:
-            # assume that kwargs is the hash of properties
+            # assume that kwargs is the hash of attributes
             hash = kwargs
-            # get values from hash
-            name = hash.get('name')
-            brand = hash.get('brand')
-            nb_doors = hash.get('nb_doors')
+        elif len(*args) > 0 and isinstance(args[0], dict):
+            # assume that args is hash of attributes
+            hash = args[0]
+            
+        # get values from hash
+        name = hash.get('name')
+        brand = hash.get('brand')
+        nb_doors = hash.get('nb_doors')
 
         # raise exceptions given improper argument values
         if name == "" or type(name) != str:
