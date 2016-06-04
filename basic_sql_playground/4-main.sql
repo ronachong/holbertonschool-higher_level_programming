@@ -1,6 +1,10 @@
 -- add eye color records for Jon Snow, Arya Stark
-INSERT INTO EyesColor (person_id, color) VALUES (6, 'Brown');
-INSERT INTO EyesColor (person_id, color) VALUES (7, 'Green');
+INSERT INTO EyesColor (person_id, color) VALUES (
+       (SELECT id FROM Person WHERE first_name = 'Jon' AND last_name = 'Snow'),
+       'Brown');
+INSERT INTO EyesColor (person_id, color) VALUES (
+       (SELECT id FROM Person WHERE first_name = 'Arya' AND last_name = 'Stark'),
+       'Green');
 
 -- create new table TVShow
 CREATE TABLE TVShow (
@@ -23,12 +27,30 @@ INSERT INTO TVShow (name) VALUES ('Game of Thrones');
 INSERT INTO TVShow (name) VALUES ('Breaking bad');
 
 -- add records to TVShowPerson
-INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (4, 2); --Breaking Bad, Walter White
-INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (3, 3); --Game of Thrones, Jaime Lannister
-INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (2, 4); --The Big Bang Theory, Sheldon Cooper
-INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (3, 5); --Game of Thrones, Tyrion Lannister
-INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (3, 6); --Game of Thrones, Jon Snow 
-INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (3, 7); --Game of Thrones, Arya Stark
+--Breaking Bad, Walter Junior White
+INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (
+       (SELECT id FROM TVShow WHERE name = 'Breaking bad'),
+       (SELECT id FROM Person WHERE first_name = 'Walter Junior' AND last_name = 'White'));
+--Game of Thrones, Jaime Lannister
+INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (
+       (SELECT id FROM TVShow WHERE name = 'Game of Thrones'),
+       (SELECT id FROM Person WHERE first_name = 'Jaime' AND last_name = 'Lannister')); 
+--The Big Bang Theory, Sheldon Cooper
+INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (
+       (SELECT id FROM TVShow WHERE name = 'The big bang theory'),
+       (SELECT id FROM Person WHERE first_name = 'Sheldon' AND last_name = 'Cooper')); 
+--Game of Thrones, Tyrion Lannister
+INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (
+       (SELECT id FROM TVShow WHERE name = 'Game of Thrones'),
+       (SELECT id FROM Person WHERE first_name = 'Tyrion' AND last_name = 'Lannister')); 
+--Game of Thrones, Jon Snow 
+INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (
+       (SELECT id FROM TVShow where name = 'Game of Thrones'),
+       (SELECT id FROM Person where first_name = 'Jon' AND last_name = 'Snow'));
+--Game of Thrones, Arya Stark
+INSERT INTO TVShowPerson (tvshow_id, person_id) VALUES (
+       (SELECT id FROM TVShow where name = 'Game of Thrones'),
+       (SELECT id FROM Person where first_name = 'Arya' AND last_name = 'Stark')); 
 
 -- print all tables in database
 SELECT * FROM Person;
