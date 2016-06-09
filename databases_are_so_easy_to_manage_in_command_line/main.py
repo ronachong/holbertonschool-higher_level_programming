@@ -1,4 +1,5 @@
 import sys
+import models
 
 # if no arguments were passed (excluding the file name itself)
 if len(sys.argv) == 1:
