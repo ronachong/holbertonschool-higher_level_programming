@@ -6,10 +6,10 @@ from models import *
 # HELPER METHODS
 def print_table():
     if argv[2] == "basemodel": print_records(BaseModel)
-    if argv[2] == "school": print_records(School)
-    if argv[2] == "batch": print_records(Batch)
-    if argv[2] == "user": print_records(User)
-    if argv[2] == "student": print_records(Student)
+    elif argv[2] == "school": print_records(School)
+    elif argv[2] == "batch": print_records(Batch)
+    elif argv[2] == "user": print_records(User)
+    elif argv[2] == "student": print_records(Student)
         
 def print_records(table):
     for record in table.select(): print record
@@ -18,8 +18,11 @@ def print_records(table):
 
 def delete_record(table):
     try:
-        table.delete(id=argv[3])
-    except OperationalError:
+        record = table.get(id=argv[3])
+        print "Delete:", record
+        record.delete_instance()
+        print "Delete:", record
+    except:
         print "Nothing to delete"
 
 
@@ -57,9 +60,8 @@ elif argv[1] == "insert":
 
 elif argv[1] == "delete":
     if argv[2] == "school": delete_record(School)
-    if argv[2] == "batch": delete_record(Batch)
-    if argv[2] == "student": delete_record(Student)
-    print "Delete: " + argv[2] + " " + argv[3] # this shouldn't print if delete_record raises an exception, right?
+    elif argv[2] == "batch": delete_record(Batch)
+    elif argv[2] == "student": delete_record(Student)
 
 else:
     print "Undefined action " + argv[1]    
