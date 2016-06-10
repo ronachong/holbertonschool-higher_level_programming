@@ -35,17 +35,16 @@ elif argv[1] == "create":
 
 elif argv[1] == "print":
     if len(argv) < 3: pass
-    # else, print data for each record in requested table
+    # else print data for each record in requested table
     else: print_table()
 
 elif argv[1] == "insert":
     # execute insert command
-    if argv[2] == "school": School.create(name=argv[3])
-    if argv[2] == "batch": Batch.create(school=argv[3], name=argv[4])
-    if argv[2] == "student": Student.create(batch=argv[3], age=argv[4], \
+    if argv[2] == "school": record = School.create(name=argv[3])
+    if argv[2] == "batch": record = Batch.create(school=argv[3], name=argv[4])
+    if argv[2] == "student": record = Student.create(batch=argv[3], age=argv[4], \
         last_name=argv[5], first_name=argv[6])
-    print "New " + argv[2] + ": "
-    print_table()
+    print "New " + argv[2] + ":", record
 
 elif argv[1] == "delete":
     if argv[2] == "school": delete_record(School)
