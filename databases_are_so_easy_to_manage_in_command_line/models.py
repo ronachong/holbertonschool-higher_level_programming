@@ -8,7 +8,7 @@ class BaseModel(Model):
     # is this subclass really a metaclass? below:
     class Meta:
         database = my_models_db
-        order_by = ('id,' )
+        order_by = ('id', )
 
 class School(BaseModel):
     # CLASS ATTRIBUTES
