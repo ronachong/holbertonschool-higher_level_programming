@@ -19,7 +19,7 @@ class School(BaseModel):
 
     # invoking instance name will return "School: <name> (<id>)"
     def __str__(self):
-        return "School: " + self.name + " (" + self.id + ")"
+        return "School: " + self.name + " (" + str(self.id) + ")"
 
 class Batch(BaseModel):
     # CLASS ATTRIBUTES
@@ -32,7 +32,7 @@ class Batch(BaseModel):
 
     # invoking instance name will return "Batch: <name> (<id>)"
     def __str__(self):
-        return "Batch: " + self.name + " (" + self.id + ")"
+        return "Batch: " + self.name + " (" + str(self.id) + ")"
 
 class User(BaseModel):
     # CLASS ATTRIBUTES
@@ -47,7 +47,7 @@ class User(BaseModel):
     
     # invoking instance name will return "User: <first_name> <last_name> (<id>)"
     def __str__(self):
-        return "User: " + self.first_name + " " + self.last_name + " (" + self.id + ")"
+        return "User: " + self.first_name + " " + self.last_name + " (" + str(self.id) + ")"
 
 class Student(User):
     # CLASS ATTRIBUTE - batch maps to a column expecting ID values from Batch
