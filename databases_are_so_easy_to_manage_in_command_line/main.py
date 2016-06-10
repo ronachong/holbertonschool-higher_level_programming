@@ -1,6 +1,27 @@
 from sys import *
-import models
-from peewee import *
+from models import *
+# from peewee import *
+
+    
+# HELPER METHODS
+def print_table():
+    if argv[2] == "basemodel": print_records(BaseModel)
+    if argv[2] == "school": print_records(School)
+    if argv[2] == "batch": print_records(Batch)
+    if argv[2] == "user": print_records(User)
+    if argv[2] == "student": print_records(Student)
+        
+def print_records(table):
+    for record in table.select(): print record
+# not sure if record will map back onto Python instance of class?
+# or do I manually print each of the values from the record?        
+
+def delete_record(table):
+    try:
+        table.delete(id=argv[3])
+    except OperationalError:
+        print "Nothing to delete"
+
 
 # if no arguments were passed (excluding the filename itself)
 if len(argv) == 1:
@@ -13,8 +34,9 @@ elif argv[1] == "create":
     # not sure of the merits of try/except clauses here
 
 elif argv[1] == "print":
-    # print data for each record in requested table
-    print_table()
+    if len(argv) < 3: pass
+    # else, print data for each record in requested table
+    else: print_table()
 
 elif argv[1] == "insert":
     # execute insert command
@@ -32,23 +54,5 @@ elif argv[1] == "delete":
     print "Delete: " + argv[2] + " " + argv[3] # this shouldn't print if delete_record raises an exception, right?
 
 else:
-    print "Undefined action " + sys.argv[1]    
-    
-# HELPER METHODS
-def print_table:
-    if argv[2] == "basemodel": print_records(BaseModel)
-    if argv[2] == "school": print_records(School)
-    if argv[2] == "batch": print_records(Batch)
-    if argv[2] == "user": print_records(User)
-    if argv[2] == "student": print_records(Student)
-        
-def print_records(table):
-    for record in table.select(): print record
-# not sure if record will map back onto Python instance of class?
-# or do I manually print each of the values from the record?        
+    print "Undefined action " + argv[1]    
 
-def delete_record(table):
-    try:
-        table.delete(id=argv[3])
-    except OperationalError:
-        print "Nothing to delete"
