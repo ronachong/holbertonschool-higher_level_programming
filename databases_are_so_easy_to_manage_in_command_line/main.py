@@ -17,13 +17,13 @@ def run_insert():
     if table_key == "school": record = School.create(name=argv[3])
     elif table_key == "batch": record = Batch.create(school=argv[3], name=argv[4])
     elif table_key == "student" and len(argv) == 7: record = Student.create(
-            batch=argv[3], \
-            age=argv[4], \
-            last_name=argv[5], \
+            batch=argv[3],
+            age=argv[4],
+            last_name=argv[5],
             first_name=argv[6])
     elif table_key == "student" and len(argv) == 6: record = Student.create(
-            batch=argv[3], \
-            age=argv[4], \
+            batch=argv[3],
+            age=argv[4], 
             last_name=argv[5])
     print "New " + table_key + ":", record
 
@@ -60,7 +60,7 @@ while True:
                'user': User,
                'student': Student }
         
-        if len(argv) < 3 and command == 'create': commands[command_key]()
+        if len(argv) < 3 and command_key == 'create': commands[command_key]()
         elif len(argv) < 3: pass # wrong number of arguments for cmd
         elif argv[2] not in models.keys(): # improper value passed for table
             print "Undefined value", argv[2]
@@ -68,9 +68,8 @@ while True:
             table_key = argv[2]
             table = models[table_key]
             commands[command_key]()
-
     else:
         # action submitted does not match options: print error message
-        print "Undefined action", command
+        print "Undefined action", command_key
         
     break
