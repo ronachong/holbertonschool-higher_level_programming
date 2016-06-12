@@ -53,4 +53,8 @@ class Student(User):
     # CLASS ATTRIBUTE - batch maps to a column expecting ID values from Batch
     batch = ForeignKeyField(Batch, related_name="students", on_delete='CASCADE')
     def __str__(self):
-        return "Student: " + self.first_name + " " + self.last_name + " (" + str(self.id) + ")"
+        if self.first_name == "":
+            return "Student: " +  self.last_name + " (" + str(self.id) + ")" + " part of the batch: " + str(self.batch)
+
+        # else:
+        return "Student: " +  self.first_name +  " " + self.last_name + " (" + str(self.id) + ")" + " part of the batch: " + str(self.batch)

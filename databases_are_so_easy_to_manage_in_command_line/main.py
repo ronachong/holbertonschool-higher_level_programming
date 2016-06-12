@@ -25,6 +25,7 @@ def run_insert():
             batch=argv[3],
             age=argv[4], 
             last_name=argv[5])
+
     print "New " + table_key + ":", record
 
 def run_delete():
