@@ -66,11 +66,33 @@ def run_print_family(stu_last_name):
         Student.get(last_name=stu_last_name)
         for record in Student.select().where(Student.last_name==stu_last_name):
             print record
+
     except:
         print "Last name not found"
 
-def run_age_average():
-    pass
+def run_age_average(batch_ID):
+    if batch_ID == None:
+        record = Student.select(fn.Avg(Student.age).alias('average_age')).get()
+    else:
+        record = Student.select(fn.Avg(Student.age).alias('average_age')).where(
+            Student.batch==batch_ID).get()
+
+    print record.average_age
+
+    ''' alternatively could use:
+    sum = 0
+    num_students = 0
+    selection_pool = (Student.select() if batch_ID == None \
+                     else Student.select().where(Student.batch==batch_ID))
+
+    for record in selection_pool:
+        sum += record.age
+        num_students += 1
+    
+    average = sum/num_students
+    print average
+    '''
+
 
 def run_change_batch():
     pass
