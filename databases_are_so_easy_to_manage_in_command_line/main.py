@@ -98,7 +98,8 @@ while True:
 
         if action_requested in ['print_batch_by_school',
                                 'print_student_by_batch',
-                                'print_student_by_school']:
+                                'print_student_by_school',
+                                'print_family']:
             commands[action_requested](argv[2])
 
     break

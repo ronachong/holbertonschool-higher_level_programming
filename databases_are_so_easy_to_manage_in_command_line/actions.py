@@ -38,7 +38,7 @@ def run_print_batch_by_school(school_ID):
     try:
         School.get(id=school_ID)
         for record in Batch.select().where(Batch.school==school_ID):
-        print record
+            print record
 
     except:
         print "School not found"
@@ -57,12 +57,17 @@ def run_print_student_by_school(school_ID):
         School.get(id=school_ID)
         for record in Student.select().join(Batch).where(Batch.school==school_ID):
             print record
+
     except:
         print "School not found"
     
 def run_print_family(stu_last_name):
-    try: Student.get(last_name=stu_last_name)
-    except: print "Last name not found"
+    try:
+        Student.get(last_name=stu_last_name)
+        for record in Student.select().where(Student.last_name==stu_last_name):
+            print record
+    except:
+        print "Last name not found"
 
 def run_age_average():
     pass
