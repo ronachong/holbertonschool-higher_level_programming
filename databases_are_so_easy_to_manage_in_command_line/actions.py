@@ -35,28 +35,34 @@ def run_delete(table, argv):
         print "Nothing to delete"
 
 def run_print_batch_by_school(school_ID):
-    try: School.get(id=school_ID)
-    except: print "School not found"
-
-    for record in Batch.select().where(Batch.school==school_ID):
+    try:
+        School.get(id=school_ID)
+        for record in Batch.select().where(Batch.school==school_ID):
         print record
+
+    except:
+        print "School not found"
 
 def run_print_student_by_batch(batch_ID):
-    try: Batch.get(id=batch_ID)
-    except: print "Batch not found"
+    try:
+        Batch.get(id=batch_ID)
+        for record in Student.select().where(Student.batch==batch_ID):
+            print record
+
+    except: 
+        print "Batch not found"
     
-    for record in Student.select().where(Student.batch==batch_ID):
-        print record
-
 def run_print_student_by_school(school_ID):
-    try: School.get(id=school_ID)
-    except: print "School not found"
-
-    for record in Student.select().join(Batch).where(Batch.school==school_ID):
-        print record
-
-def run_print_family():
-    pass
+    try:
+        School.get(id=school_ID)
+        for record in Student.select().join(Batch).where(Batch.school==school_ID):
+            print record
+    except:
+        print "School not found"
+    
+def run_print_family(stu_last_name):
+    try: Student.get(last_name=stu_last_name)
+    except: print "Last name not found"
 
 def run_age_average():
     pass
