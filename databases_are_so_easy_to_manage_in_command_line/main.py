@@ -110,4 +110,7 @@ while True:
         if action_requested == 'change_batch':
             run_change_batch(argv[2], argv[3])
 
+        if action_requested == 'print_all':
+            run_print_all()
+
     break

@@ -112,4 +112,9 @@ def run_change_batch(student_ID, batch_ID):
         student.save()
 
 def run_print_all():
-    pass
+    for school_rec in School.select():
+        print school_rec
+        for batch_rec in school_rec.batches:
+            print "\t", batch_rec
+            for student_rec in batch_rec.students:
+                print "\t\t", student_rec
