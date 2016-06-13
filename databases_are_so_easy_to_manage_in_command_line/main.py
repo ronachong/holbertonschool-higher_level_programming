@@ -29,8 +29,9 @@ def check_arguments(arguments, options, tables):
             return False
 
         if action_requested in ['print_batch_by_school', 'print_student_by_batch', 'print_student_by_school', 'change_batch'] \
-           and not re.search(r"\d+", arguments[2]):
+           and not re.search(r"\A\d+\Z", arguments[2]):
             # improper value passed for school, batch or student ID
+            print "Invalid ID value", arguments[2]
             return False
 
         if action_requested == 'print_family' and type(arguments[2]) != str:
