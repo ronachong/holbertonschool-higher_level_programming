@@ -42,8 +42,9 @@ def check_arguments(arguments, options, tables):
             return False
 
         if action_requested == 'age_average' and len(arguments) > 2 \
-           and type(arguments[2]) != int:
+           and not search(r"\A\d+\Z", arguments[2]):
             # improper value passed for batch ID
+            print "Invalid ID value", arguments[2]
             return False
 
         if action_requested == 'change_batch' and type(arguments[3]) != int:
