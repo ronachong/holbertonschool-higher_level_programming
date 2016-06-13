@@ -76,7 +76,7 @@ def run_age_average(batch_ID):
 
     else:
         try: Batch.get(id=batch_ID)
-        except: print "Batch not found"; return
+        except: print 'Batch not found'; return
 
         record = Student.select(fn.Avg(Student.age).alias('average_age')).where(
             Student.batch==batch_ID).get()
@@ -98,7 +98,18 @@ def run_age_average(batch_ID):
     '''
 
 def run_change_batch(student_ID, batch_ID):
-    pass
+    try: student = Student.get(id=student_ID)
+    except: print 'Student not found'; return
+
+    try: batch = Batch.get(id=batch_ID)
+    except: print 'Batch not found'; return
+
+    if student.batch == batch:
+        print student, "already in", batch
+    else:
+        print student, "has been moved to", batch
+        student.batch = batch_ID
+        student.save()
 
 def run_print_all():
     pass

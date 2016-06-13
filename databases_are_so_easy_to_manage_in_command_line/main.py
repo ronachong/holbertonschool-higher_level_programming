@@ -107,4 +107,7 @@ while True:
                                 'age_average']:
             commands[action_requested](parameter)
 
+        if action_requested == 'change_batch':
+            run_change_batch(argv[2], argv[3])
+
     break
