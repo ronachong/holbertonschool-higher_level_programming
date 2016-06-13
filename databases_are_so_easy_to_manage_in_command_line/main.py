@@ -1,6 +1,6 @@
 from sys import *
 from actions import *
-
+import re
 
 # HELPER METHODS
 def check_arguments(arguments, options, tables):
@@ -29,7 +29,7 @@ def check_arguments(arguments, options, tables):
             return False
 
         if action_requested in ['print_batch_by_school', 'print_student_by_batch', 'print_student_by_school', 'change_batch'] \
-           and type(arguments[2]) != int:
+           and not re.search(r"\d+", arguments[2]):
             # improper value passed for school, batch or student ID
             return False
 
@@ -92,6 +92,9 @@ while True:
             table = models[argv[2]]
             commands[action_requested](table, argv)
 
-        
+        if action_requested in ['print_batch_by_school',
+                                'print_student_by_batch',
+                                'print_student_by_school']:
+            commands[action_requested](argv[2])
 
     break

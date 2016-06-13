@@ -34,14 +34,26 @@ def run_delete(table, argv):
     except:
         print "Nothing to delete"
 
-def run_print_batch_by_school():
-    pass
+def run_print_batch_by_school(school_ID):
+    n = 0
+    for record in Batch.select().where(Batch.school==school_ID):
+        print record
+        n += 1
+    if n == 0: print "School not found"
 
-def run_print_student_by_batch():
-    pass
+def run_print_student_by_batch(batch_ID):
+    n = 0
+    for record in Student.select().where(Student.batch==batch_ID):
+        print record
+        n += 1
+    if n == 0: print "Batch not found"
 
-def run_print_student_by_school():
-    pass
+def run_print_student_by_school(school_ID):
+    n = 0
+    for record in Student.select().join(Batch).where(Batch.school==school_ID):
+        print record
+        n += 1
+    if n == 0: print "School not found"
 
 def run_print_family():
     pass
