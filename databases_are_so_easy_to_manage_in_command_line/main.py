@@ -47,8 +47,10 @@ def check_arguments(arguments, options, tables):
             print "Invalid ID value", arguments[2]
             return False
 
-        if action_requested == 'change_batch' and type(arguments[3]) != int:
+        if action_requested == 'change_batch' \
+           and not search(r"\A\d+\Z", arguments[3]):
             # improper value passed for batch ID
+            print "Invalid ID value", arguments[3]
             return False
 
         else:
