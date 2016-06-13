@@ -38,13 +38,19 @@ def run_delete():
 
 
 # MAIN CODE
-# if no arguments were passed (excluding filename): print error message
+
 while True:
     commands = {
         'create': run_create,
         'print': run_print,
+        'print_batch_by_school': run_print_batch_by_school,
+        'print_student_by_batch': run_print_student_by_batch,
+        'print_student_by_school': run_print_student_by_school,
+        'print_family': run_print_family,
         'insert': run_insert,
-        'delete': run_delete
+        'delete': run_delete,
+        'age_average': run_age_average
+        'change_batch': run_change_batch
     }
 
     if len(argv) < 2:
