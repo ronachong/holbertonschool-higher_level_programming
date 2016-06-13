@@ -73,21 +73,15 @@ def run_print_family(stu_last_name):
 def run_age_average(batch_ID):
     if batch_ID == None:
         record = Student.select(fn.Avg(Student.age).alias('average_age')).get()
-        print record.average_age
 
     else:
-        try:
-            Batch.get(id=batch_ID)
-            record = Student.select(fn.Avg(Student.age).alias('average_age')).where(
+        try: Batch.get(id=batch_ID)
+        except: print "Batch not found"; return
+
+        record = Student.select(fn.Avg(Student.age).alias('average_age')).where(
             Student.batch==batch_ID).get()
-            print record.average_age
 
-        except:
-            print "Batch not found"
-
-
-
-
+    print record.average_age
 
     ''' alternatively could use:
     sum = 0
@@ -103,7 +97,7 @@ def run_age_average(batch_ID):
     print average
     '''
 
-def run_change_batch():
+def run_change_batch(student_ID, batch_ID):
     pass
 
 def run_print_all():
