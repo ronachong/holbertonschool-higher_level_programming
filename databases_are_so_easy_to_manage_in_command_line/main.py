@@ -85,8 +85,9 @@ while True:
                'student': Student }
 
     if check_arguments(argv, commands.keys(), models.keys()) == True:
-        # valid arguments passed; and run command
+        # valid arguments passed; run command
         action_requested = argv[1]
+        parameter = (argv[2] if len(argv) > 2 else None)
         if action_requested == 'create':
             run_create(models.values())
 
@@ -94,13 +95,14 @@ while True:
             run_insert(argv)
 
         if action_requested in ['print', 'delete']:
-            table = models[argv[2]]
+            table = models[parameter]
             commands[action_requested](table, argv)
 
         if action_requested in ['print_batch_by_school',
                                 'print_student_by_batch',
                                 'print_student_by_school',
-                                'print_family']:
-            commands[action_requested](argv[2])
+                                'print_family',
+                                'age_average']:
+            commands[action_requested](parameter)
 
     break
