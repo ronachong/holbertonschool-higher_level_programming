@@ -1,40 +1,59 @@
 from sys import *
-from models import *
+from actions import *
 
 
 # HELPER METHODS
-def run_create():
-    # create all tables related to models
-    my_models_db.connect()
-    my_models_db.create_tables(models.values())
-    # not sure of the merits of try/except clauses here
+def check_arguments(arguments, options, tables):
+    if len(arguments) < 2:
+        # no action submitted: print error message
+        print "Please enter an action"
+        return False
 
-def run_print():
-    # print data for each record in specified table
-    for record in table.select(): print record
+    # otherwise: an action has been submitted
+    action_requested = arguments[1]
 
-def run_insert():
-    if table_key == "school": record = School.create(name=argv[3])
-    elif table_key == "batch": record = Batch.create(school=argv[3], name=argv[4])
-    elif table_key == "student" and len(argv) == 7: record = Student.create(
-            batch=argv[3],
-            age=argv[4],
-            last_name=argv[5],
-            first_name=argv[6])
-    elif table_key == "student" and len(argv) == 6: record = Student.create(
-            batch=argv[3],
-            age=argv[4], 
-            last_name=argv[5])
+    if action_requested in options:
+        # action submitted is valid;
+        # check if parameters to execute commands are valid;
+        # (eventually - raise exceptions if not?)
 
-    print "New " + table_key + ":", record
+        if action_requested not in ['create', 'age_average', 'print_all'] \
+           and len(arguments) < 3:
+            # wrong number of arguments passed
+            return False
 
-def run_delete():
-    try:
-        record = table.get(id=argv[3])
-        record.delete_instance()
-        print "Delete:", record
-    except:
-        print "Nothing to delete"
+        if action_requested in ['print', 'insert', 'delete'] \
+           and arguments[2] not in tables:
+            # improper value passed for table
+            print "Undefined table value", arguments[2]
+            return False
+
+        if action_requested in ['print_batch_by_school', 'print_student_by_batch', 'print_student_by_school', 'change_batch'] \
+           and type(arguments[2]) != int:
+            # improper value passed for school, batch or student ID
+            return False
+
+        if action_requested == 'print_family' and type(arguments[2]) != str:
+            # improper value passed for last name of student
+            return False
+
+        if action_requested == 'age_average' and len(arguments) > 2 \
+           and type(arguments[2]) != int:
+            # improper value passed for batch ID
+            return False
+
+        if action_requested == 'change_batch' and type(arguments[3]) != int:
+            # improper value passed for batch ID
+            return False
+
+        else:
+            # parameters entered meets all requirements
+            return True
+
+    else:
+        # action submitted does not match options: print error message
+        print "Undefined action", command_key
+        return False
 
 
 # MAIN CODE
@@ -47,36 +66,32 @@ while True:
         'print_student_by_batch': run_print_student_by_batch,
         'print_student_by_school': run_print_student_by_school,
         'print_family': run_print_family,
+        'print_all': run_print_all,
         'insert': run_insert,
         'delete': run_delete,
-        'age_average': run_age_average
+        'age_average': run_age_average,
         'change_batch': run_change_batch
     }
 
-    if len(argv) < 2:
-        # no action submitted: print error message
-        print "Please enter an action"
-    
-    elif argv[1] in commands.keys():
-        # action submitted matches predefined options;
-        # check if conditions to execute commands are met
-        command_key = argv[1]
-        models = { 'basemodel': BaseModel,
+    models = { 'basemodel': BaseModel,
                'school': School,
                'batch': Batch,
                'user': User,
                'student': Student }
+
+    if check_arguments(argv, commands.keys(), models.keys()) == True:
+        # valid arguments passed; and run command
+        action_requested = argv[1]
+        if action_requested == 'create':
+            run_create(models.values())
+
+        if action_requested == 'insert':
+            run_insert(argv)
+
+        if action_requested in ['print', 'delete']:
+            table = models[argv[2]]
+            commands[action_requested](table, argv)
+
         
-        if len(argv) < 3 and command_key == 'create': commands[command_key]()
-        elif len(argv) < 3: pass # wrong number of arguments for cmd
-        elif argv[2] not in models.keys(): # improper value passed for table
-            print "Undefined value", argv[2]
-        else:
-            table_key = argv[2]
-            table = models[table_key]
-            commands[command_key]()
-    else:
-        # action submitted does not match options: print error message
-        print "Undefined action", command_key
-        
+
     break
