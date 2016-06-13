@@ -35,25 +35,25 @@ def run_delete(table, argv):
         print "Nothing to delete"
 
 def run_print_batch_by_school(school_ID):
-    n = 0
+    try: School.get(id=school_ID)
+    except: print "School not found"
+
     for record in Batch.select().where(Batch.school==school_ID):
         print record
-        n += 1
-    if n == 0: print "School not found"
 
 def run_print_student_by_batch(batch_ID):
-    n = 0
+    try: Batch.get(id=batch_ID)
+    except: print "Batch not found"
+    
     for record in Student.select().where(Student.batch==batch_ID):
         print record
-        n += 1
-    if n == 0: print "Batch not found"
 
 def run_print_student_by_school(school_ID):
-    n = 0
+    try: School.get(id=school_ID)
+    except: print "School not found"
+
     for record in Student.select().join(Batch).where(Batch.school==school_ID):
         print record
-        n += 1
-    if n == 0: print "School not found"
 
 def run_print_family():
     pass
