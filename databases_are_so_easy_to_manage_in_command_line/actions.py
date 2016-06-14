@@ -170,8 +170,40 @@ def run_note_average_by_batch(batch_ID):
         if record.note_average != None:
             print subject_key + ':', record.note_average
 
-def run_top_batch(batch_ID):
-    pass
+def run_top_batch(batch_ID, subject):
+    try: Batch.get(id=batch_ID)
+    except: print 'Batch not found'; return
 
-def run_top_school(school_ID):
-    pass
+    if subject == None: record = (Student
+                                  .select(Student, fn.Max(Exercise.note))
+                                  .join(Exercise)
+                                  .where(Student.batch==batch_ID)
+                                  .get())
+    else: record = (Student
+                    .select(Student, fn.Max(Exercise.note))
+                    .join(Exercise)
+                    .where(Student.batch==batch_ID)
+                    .where(Exercise.subject==subject)
+                    .get())
+
+    print record
+
+def run_top_school(school_ID, subject):
+    try: School.get(id=school_ID)
+    except: print 'School not found'; return
+
+    if subject == None: record = (Student
+                                  .select(Student, fn.Max(Exercise.note))
+                                  .join(Batch)
+                                  .join(Exercise, on=(Student.id==Exercise.student))
+                                  .where(Batch.school==school_ID)
+                                  .get())
+    else: record = (Student
+                    .select(Student, fn.Max(Exercise.note))
+                    .join(Batch)
+                    .join(Exercise, on=(Student.id==Exercise.student))
+                    .where(Batch.school==school_ID)
+                    .where(Exercise.subject==subject)
+                    .get())
+
+    print record
