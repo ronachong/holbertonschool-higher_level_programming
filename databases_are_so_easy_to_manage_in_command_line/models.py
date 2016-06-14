@@ -72,6 +72,6 @@ class Exercise(BaseModel):
     note = IntegerField(default=0)
 
     def __str__(self):
-        return "Exercise:", self.student, "has", self.note, "in", self.subject, \
-            "(" + self.id + ")"
+        return "Exercise: " + str(self.student) + " has " + str(self.note) + " in " + \
+            self.subject + " (" + str(self.id) + ")"
 

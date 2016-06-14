@@ -23,6 +23,10 @@ def run_insert(argv):
             batch=argv[3],
             age=argv[4],
             last_name=argv[5])
+    elif table_key == 'exercise': record = Exercise.create(
+            student=argv[3],
+            subject=argv[4],
+            note=argv[5])
 
     print "New " + table_key + ":", record
 
@@ -118,3 +122,5 @@ def run_print_all():
             print "\t", batch_rec
             for student_rec in batch_rec.students:
                 print "\t\t", student_rec
+                for exercise_rec in student_rec.exercises:
+                    print "\t\t\t", exercise_rec

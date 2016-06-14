@@ -84,7 +84,8 @@ while True:
                'school': School,
                'batch': Batch,
                'user': User,
-               'student': Student }
+               'student': Student,
+               'exercise': Exercise }
 
     if check_arguments(argv, commands.keys(), models.keys()) == True:
         # valid arguments passed; run command
