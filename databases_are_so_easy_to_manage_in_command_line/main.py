@@ -102,33 +102,33 @@ while True:
     if check_arguments(argv, commands.keys(), models.keys()) == True:
         # valid arguments passed; run command
         action_requested = argv[1]
-        parameter = (argv[2] if len(argv) > 2 else None)
+        parameter_1 = (argv[2] if len(argv) > 2 else None)
+        parameter_2 = (argv[3] if len(argv) > 3 else None)
+
         if action_requested == 'create':
             run_create(models.values())
 
-        if action_requested == 'insert':
+        elif action_requested == 'insert':
             run_insert(argv)
 
-        if action_requested in ['print', 'delete']:
-            table = models[parameter]
+        elif action_requested in ['print', 'delete']:
+            table = models[parameter_1]
             commands[action_requested](table, argv)
 
-        if action_requested in ['print_batch_by_school',
+        elif action_requested in ['print_batch_by_school',
                                 'print_student_by_batch',
                                 'print_student_by_school',
                                 'print_family',
                                 'age_average',
                                 'note_average_by_student',
                                 'note_average_by_batch',
-                                'note_average_by_school',
-                                'top_school',
-                                'top_batch']:
-            commands[action_requested](parameter)
+                                'note_average_by_school']:
+            commands[action_requested](parameter_1)
 
-        if action_requested == 'change_batch':
-            run_change_batch(argv[2], argv[3])
+        elif action_requested in ['change_batch', 'top_school', 'top_batch']:
+            commands[action_requested](parameter_1, parameter_2)
 
-        if action_requested == 'print_all':
+        elif action_requested == 'print_all':
             run_print_all()
 
     break
