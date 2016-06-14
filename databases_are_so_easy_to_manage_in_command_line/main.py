@@ -28,8 +28,15 @@ def check_arguments(arguments, options, tables):
             print "Undefined table value", arguments[2]
             return False
 
-        if action_requested in ['print_batch_by_school', 'print_student_by_batch', \
-                                'print_student_by_school', 'change_batch'] \
+        if action_requested in ['print_batch_by_school',
+                                'print_student_by_batch',
+                                'print_student_by_school',
+                                'change_batch',
+                                'note_average_by_student',
+                                'note_average_by_school',
+                                'note_average_by_batch',
+                                'top_batch',
+                                'top_school'] \
            and not search(r"\A\d+\Z", arguments[2]):
             # improper value passed for school, batch or student ID
             print "Invalid ID value", arguments[2]
@@ -77,7 +84,12 @@ while True:
         'insert': run_insert,
         'delete': run_delete,
         'age_average': run_age_average,
-        'change_batch': run_change_batch
+        'change_batch': run_change_batch,
+        'note_average_by_student': run_note_average_by_student,
+        'note_average_by_batch': run_note_average_by_batch,
+        'note_average_by_school': run_note_average_by_school
+        'top_batch': run_top_batch,
+        'top_school': run_top_school
     }
 
     models = { 'basemodel': BaseModel,
@@ -105,7 +117,12 @@ while True:
                                 'print_student_by_batch',
                                 'print_student_by_school',
                                 'print_family',
-                                'age_average']:
+                                'age_average',
+                                'note_average_by_student',
+                                'note_average_by_batch',
+                                'note_average_by_school',
+                                'top_school',
+                                'top_batch']:
             commands[action_requested](parameter)
 
         if action_requested == 'change_batch':

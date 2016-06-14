@@ -124,3 +124,18 @@ def run_print_all():
                 print "\t\t", student_rec
                 for exercise_rec in student_rec.exercises:
                     print "\t\t\t", exercise_rec
+
+def note_average_by_student(student_ID):
+    pass
+
+def note_average_by_school(school_ID):
+    pass
+
+def note_average_by_batch(batch_ID):
+    pass
+
+def top_batch(batch_ID):
+    pass
+
+def top_school(school_ID):
+    pass
