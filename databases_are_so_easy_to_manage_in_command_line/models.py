@@ -52,9 +52,26 @@ class User(BaseModel):
 class Student(User):
     # CLASS ATTRIBUTE - batch maps to a column expecting ID values from Batch
     batch = ForeignKeyField(Batch, related_name="students", on_delete='CASCADE')
+
     def __str__(self):
         if self.first_name == "":
-            return "Student: " +  self.last_name + " (" + str(self.id) + ")" + " part of the batch: " + str(self.batch)
+            return "Student: " +  self.last_name + " (" + str(self.id) + ")" + \
+            " part of the batch: " + str(self.batch)
 
         # else:
-        return "Student: " +  self.first_name +  " " + self.last_name + " (" + str(self.id) + ")" + " part of the batch: " + str(self.batch)
+        return "Student: " +  self.first_name +  " " + self.last_name + " (" + \
+            str(self.id) + ")" + " part of the batch: " + str(self.batch)
+
+class Exercise(BaseModel):
+    SUBJECTS = [('math', "Math"), ('english', "English"), ('history', "History"),
+                ('c_prog', "C prog"), ('swift_prog', "Swift prog")]
+
+    id = PrimaryKeyField(unique=True)
+    student = ForeignKeyField(Student, related_name="exercises", on_delete='CASCADE')
+    subject = CharField(128, choices=SUBJECTS)
+    note = IntegerField(default=0)
+
+    def __str__(self):
+        return "Exercise:", self.student, "has", self.note, "in", self.subject, \
+            "(" + self.id + ")"
+
