@@ -204,7 +204,7 @@ def populate_masterlist():
     for record in School:
         schoolname_pair = ("name", record.name)
         batch_pair = ("batches", get_batchlist(record))
-        school_dict = [schoolname_pair, batch_pair]
+        school_dict = dict([schoolname_pair, batch_pair])
         master_list.append(school_dict)
 
     return master_list
@@ -218,19 +218,20 @@ def get_batchlist(school):
         batch_dict = dict([batchname_pair, students_pair])
         batch_list.append(batch_dict)
 
-    return batch_list
+    return (batch_list if batch_list !=[] else None)
 
 def get_studentlist(batch):
     student_list = []
 
-    for record in batch.students: 
+    for record in batch.students:
+        age_pair = ("age", record.age)
         first_name_pair = ("first_name", record.first_name)
         last_name_pair = ("last_name", record.last_name)
         exercises_pair = ("exercises", get_exerciselist(record))
-        student_dict = dict([first_name_pair, last_name_pair, exercises_pair])
+        student_dict = dict([age_pair, first_name_pair, last_name_pair, exercises_pair])
         student_list.append(student_dict)
 
-    return student_list
+    return (student_list if student_list != [] else None)
 
 def get_exerciselist(student):
     exercise_list = []
@@ -241,4 +242,4 @@ def get_exerciselist(student):
         exercise_dict = dict([subject_pair, note_pair])
         exercise_list.append(exercise_dict)
     
-    return exercise_list
+    return (exercise_list if exercise_list != [] else None)
