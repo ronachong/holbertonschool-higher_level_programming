@@ -17,7 +17,10 @@ def check_arguments(arguments, options, tables):
         # check if parameters to execute commands are valid;
         # (eventually - raise exceptions if not?)
 
-        if action_requested not in ['create', 'age_average', 'print_all'] \
+        if action_requested not in ['create',
+                                    'age_average',
+                                    'print_all',
+                                    'export_json'] \
            and len(arguments) < 3:
             # wrong number of arguments passed
             return False
@@ -89,7 +92,8 @@ while True:
         'note_average_by_batch': run_note_average_by_batch,
         'note_average_by_school': run_note_average_by_school,
         'top_batch': run_top_batch,
-        'top_school': run_top_school
+        'top_school': run_top_school,
+        'export_json': run_export_json
     }
 
     models = { 'basemodel': BaseModel,
@@ -128,7 +132,7 @@ while True:
         elif action_requested in ['change_batch', 'top_school', 'top_batch']:
             commands[action_requested](parameter_1, parameter_2)
 
-        elif action_requested == 'print_all':
-            run_print_all()
+        elif action_requested in ['print_all', 'export_json']:
+            commands[action_requested]()
 
     break

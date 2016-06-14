@@ -207,3 +207,41 @@ def run_top_school(school_ID, subject):
                     .get())
 
     print record
+
+def run_export_json():
+    master_list = []
+    
+    for school_rec in School:
+        batch_list = []
+        
+        for batch_rec in school_rec.batches:
+            student_list = []
+            
+            for student_rec in batch_rec.students:
+                exercise_list = []
+
+                for exercise_rec in student_rec.exercises:
+                    subject_pair = ("subject", exercise_rec.subject)
+                    note_pair = ("note", exercise_rec.note)                    
+                    exercise_dict = dict([subject_pair, note_pair])
+                    exercise_list.append(exercise_dict)
+
+                first_name_pair = ("first_name", student_rec.first_name)
+                last_name_pair = ("last_name", student_rec.last_name)
+                exercises_pair = ("exercises", exercise_list)
+                student_dict = dict([first_name_pair, last_name_pair, exercises_pair])
+                student_list.append(student_dict)
+
+            print student_list
+            batchname_pair = ("name", batch_rec.name)
+            students_pair = ("students", student_list)
+            batch_dict = dict([batchname_pair, students_pair])
+            batch_list.append(batch_dict)
+
+        schoolname_pair = ("name", school_rec.name)
+        batch_pair = ("batches", batch_list)
+        school_dict = [schoolname_pair, batch_pair]
+        master_list.append(school_dict)
+        
+    print master_list
+
