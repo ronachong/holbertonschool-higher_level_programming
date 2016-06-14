@@ -87,20 +87,6 @@ def run_age_average(batch_ID):
 
     print record.average_age
 
-    ''' alternatively could use:
-    sum = 0
-    num_students = 0
-    selection_pool = (Student.select() if batch_ID == None \
-                     else Student.select().where(Student.batch==batch_ID))
-
-    for record in selection_pool:
-        sum += record.age
-        num_students += 1
-    
-    average = sum/num_students
-    print average
-    '''
-
 def run_change_batch(student_ID, batch_ID):
     try: student = Student.get(id=student_ID)
     except: print 'Student not found'; return
@@ -209,39 +195,50 @@ def run_top_school(school_ID, subject):
     print record
 
 def run_export_json():
-    master_list = []
-    
-    for school_rec in School:
-        batch_list = []
-        
-        for batch_rec in school_rec.batches:
-            student_list = []
-            
-            for student_rec in batch_rec.students:
-                exercise_list = []
-
-                for exercise_rec in student_rec.exercises:
-                    subject_pair = ("subject", exercise_rec.subject)
-                    note_pair = ("note", exercise_rec.note)                    
-                    exercise_dict = dict([subject_pair, note_pair])
-                    exercise_list.append(exercise_dict)
-
-                first_name_pair = ("first_name", student_rec.first_name)
-                last_name_pair = ("last_name", student_rec.last_name)
-                exercises_pair = ("exercises", exercise_list)
-                student_dict = dict([first_name_pair, last_name_pair, exercises_pair])
-                student_list.append(student_dict)
-
-            print student_list
-            batchname_pair = ("name", batch_rec.name)
-            students_pair = ("students", student_list)
-            batch_dict = dict([batchname_pair, students_pair])
-            batch_list.append(batch_dict)
-
-        schoolname_pair = ("name", school_rec.name)
-        batch_pair = ("batches", batch_list)
-        school_dict = [schoolname_pair, batch_pair]
-        master_list.append(school_dict)
-        
+    master_list = populate_masterlist()
     print master_list
 
+def populate_masterlist():
+    master_list = []
+
+    for record in School:
+        schoolname_pair = ("name", record.name)
+        batch_pair = ("batches", get_batchlist(record))
+        school_dict = [schoolname_pair, batch_pair]
+        master_list.append(school_dict)
+
+    return master_list
+
+def get_batchlist(school):
+    batch_list = []
+
+    for record in school.batches:
+        batchname_pair = ("name", record.name)
+        students_pair = ("students", get_studentlist(record))
+        batch_dict = dict([batchname_pair, students_pair])
+        batch_list.append(batch_dict)
+
+    return batch_list
+
+def get_studentlist(batch):
+    student_list = []
+
+    for record in batch.students: 
+        first_name_pair = ("first_name", record.first_name)
+        last_name_pair = ("last_name", record.last_name)
+        exercises_pair = ("exercises", get_exerciselist(record))
+        student_dict = dict([first_name_pair, last_name_pair, exercises_pair])
+        student_list.append(student_dict)
+
+    return student_list
+
+def get_exerciselist(student):
+    exercise_list = []
+    
+    for record in student.exercises:
+        subject_pair = ("subject", record.subject)
+        note_pair = ("note", record.note)                    
+        exercise_dict = dict([subject_pair, note_pair])
+        exercise_list.append(exercise_dict)
+    
+    return exercise_list
