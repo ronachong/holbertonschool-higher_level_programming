@@ -87,7 +87,7 @@ while True:
         'change_batch': run_change_batch,
         'note_average_by_student': run_note_average_by_student,
         'note_average_by_batch': run_note_average_by_batch,
-        'note_average_by_school': run_note_average_by_school
+        'note_average_by_school': run_note_average_by_school,
         'top_batch': run_top_batch,
         'top_school': run_top_school
     }

@@ -125,17 +125,53 @@ def run_print_all():
                 for exercise_rec in student_rec.exercises:
                     print "\t\t\t", exercise_rec
 
-def note_average_by_student(student_ID):
+def run_note_average_by_student(student_ID):
+    try: Student.get(id=student_ID)
+    except: print 'Student not found'; return
+    
+    for subject_key in ['Math', 'English', 'History', 'C prog', 'Swift prog']:
+        record = (Exercise
+        .select(fn.Avg(Exercise.note).alias('note_average'))
+        .where(Exercise.student==student_ID)
+        .where(Exercise.subject==subject_key)
+        .get())
+
+        if record.note_average != None:
+            print subject_key + ':', record.note_average
+
+def run_note_average_by_school(school_ID):
+    try: School.get(id=school_ID)
+    except: print 'School not found'; return
+    
+    for subject_key in ['Math', 'English', 'History', 'C prog', 'Swift prog']:
+        record = (Exercise
+        .select(fn.Avg(Exercise.note).alias('note_average'))
+        .join(Student)
+        .join(Batch)
+        .where(Batch.school==school_ID)
+        .where(Exercise.subject==subject_key)
+        .get())
+
+        if record.note_average != None:
+            print subject_key + ':', record.note_average
+
+def run_note_average_by_batch(batch_ID):
+    try: Batch.get(id=batch_ID)
+    except: print 'Batch not found'; return
+    
+    for subject_key in ['Math', 'English', 'History', 'C prog', 'Swift prog']:
+        record = (Exercise
+        .select(fn.Avg(Exercise.note).alias('note_average'))
+        .join(Student)
+        .where(Student.batch==batch_ID)
+        .where(Exercise.subject==subject_key)
+        .get())
+
+        if record.note_average != None:
+            print subject_key + ':', record.note_average
+
+def run_top_batch(batch_ID):
     pass
 
-def note_average_by_school(school_ID):
-    pass
-
-def note_average_by_batch(batch_ID):
-    pass
-
-def top_batch(batch_ID):
-    pass
-
-def top_school(school_ID):
+def run_top_school(school_ID):
     pass
