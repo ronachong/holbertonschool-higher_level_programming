@@ -1,5 +1,9 @@
 #!/usr/bin/python
-#5-main.py - fetch and print names from the database Project 169
+
+'''
+5-main.py fetches and prints the names, seasons and episodes of
+TV shows from the database Project 169
+'''
 
 import mysql.connector
 
@@ -20,13 +24,14 @@ TVShow_names = cursor.fetchall()
 
 # execute queries to retrieve season numbers for each TV show
 for name in TVShow_names:
-    print name[0]
+    print name[0] + ":"
 
-'''
-    cursor.execute("SELECT number FROM Season
-    JOIN TVShow ON Season.tvshow_id = TVShow.id
-    WHERE TVShow.name = " + name + "ORDER BY number ASC")
-'''
+    cursor.execute("SELECT number FROM Season \
+    JOIN TVShow ON Season.tvshow_id = TVShow.id \
+    WHERE TVShow.name = '" + name[0] + "' ORDER BY number ASC")
+    TVShow_seasons = cursor.fetchall()
+    for season in TVShow_seasons:
+        print "\tSeason " + str(season[0]) + ":"
 
 # close the cursor object
 cursor.close()
