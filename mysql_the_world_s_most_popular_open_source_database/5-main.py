@@ -22,16 +22,28 @@ cursor.execute("SELECT name FROM TVShow ORDER BY name ASC")
 # store results in variable
 TVShow_names = cursor.fetchall()
 
-# execute queries to retrieve season numbers for each TV show
 for name in TVShow_names:
     print name[0] + ":"
 
+    # execute queries to retrieve season numbers for each TV show
     cursor.execute("SELECT number FROM Season \
     JOIN TVShow ON Season.tvshow_id = TVShow.id \
     WHERE TVShow.name = '" + name[0] + "' ORDER BY number ASC")
     TVShow_seasons = cursor.fetchall()
+
     for season in TVShow_seasons:
         print "\tSeason " + str(season[0]) + ":"
+        # execute queries to retrieve episode names for each season
+        cursor.execute("SELECT Episode.number, Episode.name FROM Episode \
+        JOIN Season ON Episode.season_id = Season.id \
+        JOIN TVShow ON Season.tvshow_id = TVShow.id \
+        WHERE TVShow.name = '" + name[0] + "'" +
+            "AND Season.number = " + str(season[0]) \
+        + " ORDER BY Episode.number ASC")
+        TVShowSeason_episodes = cursor.fetchall()
+
+        for episode in TVShowSeason_episodes:
+            print "\t\t" + str(episode[0]) + ":", episode[1]
 
 # close the cursor object
 cursor.close()
