@@ -2,9 +2,9 @@
 show tables;
 
 \! echo "\nDisplay the table structure of TVShow, Genre and TVShowGenre?"
-DESC TVShow; -- this output still looks off
-DESC Genre;
-DESC TVShowGenre;
+SHOW CREATE TABLE TVShow; -- this output still looks off
+SHOW CREATE TABLE Genre;
+SHOW CREATE TABLE TVShowGenre;
 
 \! echo "\nList of TVShows, only id and name ordered by name (A-Z)?"
 SELECT id, name FROM TVShow ORDER BY name ASC;
