@@ -8,14 +8,16 @@ cnx = mysql.connect(user='student',
 
 cursor = cnx.cursor()
 
-table_attrs = { 'TVShow': ['id', 'name', 'poster'],
-                'Network': ['id', 'name'],
-                'TVShowActor': ['tvshow_id', 'actor_id'],
-                'Actor': ['id', 'name'],
-                'TVShowGenre': ['tvshow_id', 'genre_id'],
-                'Genre': ['id', 'name'],
-                'Season': ['id', 'number', 'tvshow_id'],
-                'Episode': ['id', 'name', 'number', 'overview', 'season_id'] }
+table_attrs = { 'TVShows': ['id', 'name', 'poster'],
+                'TVShow': ['id', 'name', 'poster', 'overview', 'Network.name', 'Genre.name']
+                # 'Network': ['id', 'name'],
+                # 'TVShowActor': ['tvshow_id', 'actor_id'],
+                # 'Actor': ['id', 'name'],
+                # 'TVShowGenre': ['tvshow_id', 'genre_id'],
+                # 'Genre': ['id', 'name'],
+                # 'Season': ['id', 'number', 'tvshow_id'],
+                # 'Episode': ['id', 'name', 'number', 'overview', 'season_id']
+                }
 
 # helper methods defined here
 def get_kvpair(cursor, id, table, attribute):
@@ -24,12 +26,10 @@ def get_kvpair(cursor, id, table, attribute):
     value = cursor.fetchall()[0][0]
     return (attribute, value)
 
-
-
 def get_tvshows():
     # make a master list to contain the json struct
     mlist = []
-    attr_list = table_attrs['TVShow']
+    attr_list = table_attrs['TVShows']
     query = ("SELECT id from TVShow ORDER BY name;")
     cursor.execute(query)
 
