@@ -19,7 +19,7 @@ class GET_handler(Handler):
         params = self.path.split('/')[3::]
         return params
 
-    def do_GET:
+    def do_GET(self):
         self.send_response(200)                     # provide response code for no errors?
         self.send_header('Content-type', 'json')    # specify the type of response served as header? not sure
         self.end_headers()
@@ -31,15 +31,19 @@ class GET_handler(Handler):
         self.wfile.write(response)
 
 # create http server
-PORT = 9898
-try:
-    httpd = HTTPServer(('', PORT), Get_handler)
-    print 'server started...'
-    httpd.serve_forever
-except KeyboardInterrupt:
-    print '^C: shutting down server'
-    server.socket.close()
+def main():
+    PORT = 9898
+    try:
+        httpd = HTTPServer(('', PORT), GET_handler)
+        print 'HTTP Server Running...........'
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print '^C: shutting down server'
+        server.socket.close()
 
+if __name__ == '__main__':
+    # execute only if run as a script
+    main()
 
 # helper methods defined here
 def get_kvpair(cursor, id, table, attribute):
@@ -48,7 +52,7 @@ def get_kvpair(cursor, id, table, attribute):
     value = cursor.fetchall()[0][0]
     return (attribute, value)
 
-def get_tvshows
+def get_tvshows():
     # make a master list to contain the json struct
     mlist = []
     table_attrs = { 'TVShow': ['id', 'name', 'poster'],
