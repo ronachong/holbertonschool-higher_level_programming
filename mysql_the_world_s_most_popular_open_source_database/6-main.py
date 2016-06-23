@@ -15,7 +15,7 @@ from helper import *
 class GET_handler(Handler):
 
     def get_params(self):
-        params = self.path.split('/')[3::]
+        params = self.path.split('/')[1::]
         return params
 
     def do_GET(self):
@@ -24,10 +24,8 @@ class GET_handler(Handler):
         #self.end_headers()
 
         params = self.get_params()
-        response = params
         if len(params) == 1 and params[0] == 'tvshows':
             response = get_tvshows()
-
         self.wfile.write(response)
 
 # create http server
