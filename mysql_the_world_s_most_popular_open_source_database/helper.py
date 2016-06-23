@@ -24,7 +24,7 @@ def get_tvshows():
                         host='173.246.108.142',
                         database='Project_169')
     cursor = cnx.cursor()
-    query = ("SELECT id from TVShow;")
+    query = ("SELECT id from TVShow ORDER BY name;")
 
     cursor.execute(query)
     for record in cursor.fetchall():
