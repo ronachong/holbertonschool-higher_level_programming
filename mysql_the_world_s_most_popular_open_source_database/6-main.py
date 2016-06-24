@@ -26,6 +26,9 @@ class GET_handler(Handler):
         params = self.get_params()
         if len(params) == 1 and params[0] == 'tvshows':
             response = get_tvshows()
+        if len(params) == 2:
+            response = get_tvshow_detail(params[1])
+
         self.wfile.write(response)
 
 # create http server

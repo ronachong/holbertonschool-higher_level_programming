@@ -9,7 +9,7 @@ cnx = mysql.connect(user='student',
 cursor = cnx.cursor()
 
 table_attrs = { 'TVShows': ['id', 'name', 'poster'],
-                'TVShow': ['id', 'name', 'poster', 'overview', 'Network.name', 'Genre.name']
+                'TVShow': ['TVShow.id', 'TVShow.name', 'poster', 'overview', 'Network.name', 'Genre.name']
                 # 'Network': ['id', 'name'],
                 # 'TVShowActor': ['tvshow_id', 'actor_id'],
                 # 'Actor': ['id', 'name'],
@@ -20,28 +20,44 @@ table_attrs = { 'TVShows': ['id', 'name', 'poster'],
                 }
 
 # helper methods defined here
-def get_kvpair(cursor, id, table, attribute):
-    query = ("SELECT " +  attribute + " FROM " + table + " WHERE id=" + str(id) + ";")
-    cursor.execute(query)
+def get_kvpair(query_for_attribute, attribute):
+    # query = ("SELECT " +  attribute + " FROM " + table + " WHERE id=" + str(id) + ";")
+    cursor.execute(query_for_attribute)
     value = cursor.fetchall()[0][0]
     return (attribute, value)
 
-def get_tvshows():
-    # make a master list to contain the json struct
+
+def create_mlist(query, attributes):
+    # make a master list to contain the json-like struct
     mlist = []
-    attr_list = table_attrs['TVShows']
-    query = ("SELECT id from TVShow ORDER BY name;")
     cursor.execute(query)
 
     for record in cursor.fetchall():
-        id = record[0]
-        # run through attributes and create dict for record, using list mapping
-        dict_list = []
-        for attribute in attr_list:
-            value = get_kvpair(cursor, id, 'TVShow', attribute)
-            dict_list.append(value)
-        rec_dict = dict(dict_list)
-        mlist.append(rec_dict)
+    # create dict for record with specified attributes
+        keyvalue_list = [(attributes[i], record[i]) for i in range(len(attributes))]
+        record_dict = dict(keyvalue_list)
+        mlist.append(record_dict)
 
     cnx.close()
     return mlist
+
+def get_attr_values(attr_list):
+    return str(tuple(attr_list)).strip("()").replace("'","")
+
+def get_tvshows():
+    attr_list = table_attrs['TVShows']
+    attr_values = get_attr_values(attr_list)
+    query = ("SELECT " + attr_values + " from TVShow ORDER BY name;")
+    return create_mlist(query, attr_list)
+
+def get_tvshow_detail(tvshow_id):
+    attr_list = table_attrs['TVShow']
+    attr_values = get_attr_values(attr_list)
+    query = (
+                "SELECT " + attr_values + " from TVShow \
+                JOIN TVShowGenre ON TVShow.id = TVShowGenre.tvshow_id \
+                JOIN Genre ON TVShowGenre.genre_id = Genre.id \
+                JOIN Network ON TVShow.network_id = Network.id \
+                WHERE TVShow.id=" + str(tvshow_id) + ";"
+            )
+    return create_mlist(query, attr_list)
