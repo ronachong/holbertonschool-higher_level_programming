@@ -9,10 +9,8 @@ cnx = mysql.connect(user='student',
 cursor = cnx.cursor()
 
 table_attrs = { 'TVShows': ['id', 'name', 'poster'],
-                'TVShow': ['TVShow.id', 'TVShow.name', 'poster', 'overview', 'Network.name', 'Genre.name']
-                # 'Network': ['id', 'name'],
-                # 'TVShowActor': ['tvshow_id', 'actor_id'],
-                # 'Actor': ['id', 'name'],
+                'TVShow': ['TVShow.id', 'TVShow.name', 'poster', 'overview', 'Network.name', 'Genre.name'],
+                'Actors': ['Actor.id', 'Actor.name']
                 # 'TVShowGenre': ['tvshow_id', 'genre_id'],
                 # 'Genre': ['id', 'name'],
                 # 'Season': ['id', 'number', 'tvshow_id'],
@@ -59,5 +57,17 @@ def get_tvshow_detail(tvshow_id):
                 JOIN Genre ON TVShowGenre.genre_id = Genre.id \
                 JOIN Network ON TVShow.network_id = Network.id \
                 WHERE TVShow.id=" + str(tvshow_id) + ";"
+            )
+    return create_mlist(query, attr_list)
+
+def get_actors(tvshow_id):
+    attr_list = table_attrs['Actors']
+    attr_values = get_attr_values(attr_list)
+    query = (
+                "SELECT " + attr_values + " from TVShow \
+                JOIN TVShowActor ON TVShow.id = TVShowActor.tvshow_id \
+                JOIN Actor ON TVShowActor.actor_id = Actor.id \
+                WHERE TVShow.id=" + str(tvshow_id) + " \
+                ORDER BY Actor.name;"
             )
     return create_mlist(query, attr_list)

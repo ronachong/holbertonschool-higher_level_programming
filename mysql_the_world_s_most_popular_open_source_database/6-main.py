@@ -28,6 +28,8 @@ class GET_handler(Handler):
             response = get_tvshows()
         if len(params) == 2:
             response = get_tvshow_detail(params[1])
+        if len(params) == 3:
+            if params[2] == 'actors': response = get_actors(params[1])
 
         self.wfile.write(response)
 
