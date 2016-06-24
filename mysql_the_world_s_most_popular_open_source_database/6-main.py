@@ -26,11 +26,15 @@ class GET_handler(Handler):
         params = self.get_params()
         if len(params) == 1 and params[0] == 'tvshows':
             response = get_tvshows()
-        if len(params) == 2:
+        elif len(params) == 2:
             response = get_tvshow_detail(params[1])
-        if len(params) == 3:
+        elif len(params) == 3:
             if params[2] == 'actors': response = get_actors(params[1])
-
+            elif params[2] == 'seasons': response = get_seasons(params[1])
+        elif len(params) == 4:
+            response = get_episodes(params[1], params[3])
+        elif len(params) == 5:
+            response = get_episode_detail(params[1], params[3], params[4])
         self.wfile.write(response)
 
 # create http server

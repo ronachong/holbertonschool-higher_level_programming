@@ -10,12 +10,11 @@ cursor = cnx.cursor()
 
 table_attrs = { 'TVShows': ['id', 'name', 'poster'],
                 'TVShow': ['TVShow.id', 'TVShow.name', 'poster', 'overview', 'Network.name', 'Genre.name'],
-                'Actors': ['Actor.id', 'Actor.name']
-                # 'TVShowGenre': ['tvshow_id', 'genre_id'],
-                # 'Genre': ['id', 'name'],
-                # 'Season': ['id', 'number', 'tvshow_id'],
-                # 'Episode': ['id', 'name', 'number', 'overview', 'season_id']
-                }
+                'Actors': ['Actor.id', 'Actor.name'],
+                'Seasons': ['Season.id', 'Season.number'],
+                'Episodes': ['Episode.id', 'Episode.number', 'Episode.name'],
+                'Episode': ['Episode.id', 'Episode.number', 'Episode.name', 'Episode.overview']
+            }
 
 # helper methods defined here
 def get_kvpair(query_for_attribute, attribute):
@@ -69,5 +68,42 @@ def get_actors(tvshow_id):
                 JOIN Actor ON TVShowActor.actor_id = Actor.id \
                 WHERE TVShow.id=" + str(tvshow_id) + " \
                 ORDER BY Actor.name;"
+            )
+    return create_mlist(query, attr_list)
+
+def get_seasons(tvshow_id):
+    attr_list = table_attrs['Seasons']
+    attr_values = get_attr_values(attr_list)
+    query = (
+                "SELECT " + attr_values + " from TVShow \
+                JOIN Season ON TVShow.id = Season.tvshow_id \
+                WHERE TVShow.id=" + str(tvshow_id) + " \
+                ORDER BY Season.number;"
+            )
+    return create_mlist(query, attr_list)
+
+def get_episodes(tvshow_id, season_id):
+    attr_list = table_attrs['Episodes']
+    attr_values = get_attr_values(attr_list)
+    query = (
+                "SELECT " + attr_values + " from TVShow \
+                JOIN Season ON TVShow.id = Season.tvshow_id \
+                JOIN Episode ON Season.id = Episode.season_id \
+                WHERE TVShow.id=" + str(tvshow_id) + " \
+                AND Season.id=" + str(season_id) + " \
+                ORDER BY Episode.number;"
+            )
+    return create_mlist(query, attr_list)
+
+def get_episode_detail(tvshow_id, season_id, episode_id):
+    attr_list = table_attrs['Episode']
+    attr_values = get_attr_values(attr_list)
+    query = (
+                "SELECT " + attr_values + " from TVShow \
+                JOIN Season ON TVShow.id = Season.tvshow_id \
+                JOIN Episode ON Season.id = Episode.season_id \
+                WHERE TVShow.id=" + str(tvshow_id) + " \
+                AND Season.id=" + str(season_id) + " \
+                AND Episode.id=" + str(episode_id) + ";"
             )
     return create_mlist(query, attr_list)
