@@ -13,6 +13,7 @@ words = text.split(" ")
 str_length_threads = []
 
 StrLengthThread.total_str_length = len(words) - 1
+print "Length of text is", len(text)
 for word in words:
     str_length_thread = StrLengthThread(word)
     str_length_threads += [str_length_thread]

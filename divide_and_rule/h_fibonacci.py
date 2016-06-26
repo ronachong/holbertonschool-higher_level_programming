@@ -1,5 +1,10 @@
 import threading
 
+'''
+FibonacciThread(n) creates a thread object, which, when run, prints
+n and the Fibonacci value of n using fibonacci2.
+'''
+
 class FibonacciThread(threading.Thread):    
     def __init__(self, number):
         threading.Thread.__init__(self)
