@@ -18,9 +18,13 @@ class Store:
 
     def buy(self):
         time.sleep(random.randrange(5,10))
+        Store.lock.acquire()
         if self.item_number > 0:
-            # have user buy the item
-            self.item_number -= 1
+            try:
+                # have user buy the item
+                self.item_number -= 1
+            finally:
+                Store.lock.release()
             bought = True
         else:
             bought = False
