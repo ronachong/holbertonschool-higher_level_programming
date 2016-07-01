@@ -9,7 +9,6 @@ class Store:
         self.person_capacity = person_capacity
         # create a semaphore which will block if a number of tasks equal to person_capacity acquire it
         self.semaphore = threading.BoundedSemaphore(person_capacity)
-        print "There are", self.item_number, "to begin with."
 
     def enter(self):
         # acquire semaphore to model person entering store
@@ -19,15 +18,15 @@ class Store:
     def buy(self):
         time.sleep(random.randrange(5,10))
         Store.lock.acquire()
-        if self.item_number > 0:
-            try:
+        try:
+            if self.item_number > 0:
                 # have user buy the item
                 self.item_number -= 1
-            finally:
-                Store.lock.release()
-            bought = True
-        else:
-            bought = False
+                bought = True
+            else:
+                bought = False
+        finally:
+            Store.lock.release()
         # release semaphore to model person leaving store
         self.semaphore.release()
         return bought
